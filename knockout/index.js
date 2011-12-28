@@ -1,1 +1,3 @@
-this.page = new Page($("body"));
+var aceEditor;
+
+aceEditor = new AceEditor();

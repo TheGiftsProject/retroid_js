@@ -18,33 +18,6 @@
             float: left;
         }
 
-        .logic_list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            clear: both;
-        }
-
-        .logic_list .item {
-            float: left;
-            overflow: hidden;
-            padding: 10px;
-            margin: 5px;
-        }
-
-        .logic_list .item:hover {
-            background-color: #ddd;
-        }
-
-        .logic_list .item.active {
-            background-color: #aaa;
-        }
-
-        .logic_list .item canvas {
-            width: 75px;
-            height: 75px;
-        }
-
         button.submit {
             float: right;
         }
@@ -84,5 +57,17 @@
     <script type="text/javascript" src="lib/underscore-min.js"></script>
 
     <script type="text/javascript" src="examples.js"></script>
+    <script type="text/javascript" src="lib/knockout-2.0.0.js"></script>
+    
+    <script type="text/javascript" src="lib/ace/ace.js"></script>
+    <script type="text/javascript" src="lib/ace/mode-javascript.js"></script>
+    <script type="text/javascript" src="lib/ace/theme-solarized_dark.js"></script>
+
+    <script type="text/javascript" src="viewmodels/knockout_viewmodel.js"></script>
+    <script type="text/javascript" src="viewmodels/editor.js"></script>
+
+    <script type="text/javascript" src="views/ace_adapter.js"></script>
+
+    <script type="text/javascript" src="index.js"></script>
 </body>
 </html>
