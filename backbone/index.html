@@ -1,0 +1,58 @@
+<html>
+<head>
+</head>
+<body>
+    <div class="page_container">
+        <div class="editor">
+            <span>function(leds) {</span>
+            <div id="script_input"></div>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;return leds;</span>
+            <br/>
+            <span>}</span>
+            <button class="submit">Run</button>
+        </div>
+        <div class="main_retroid">
+        </div>
+
+        <ul class="logic_list">
+        </ul>
+    </div>
+
+    <script type="text/tmpl" id="retroid_ui_template">
+        <canvas width="300" height="348"></canvas>
+    </script>
+
+    <script type="text/tmpl" id="retroid_small_ui_template">
+        <canvas width="75" height="75"></canvas>
+    </script>
+
+    <script type="text/tmpl" id="logic_list_item_template">
+        <li class="item"></li>
+    </script>
+
+    <!-- JAVASCRIPTS -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="lib/underscore-min.js"></script>
+    <script type="text/javascript" src="lib/ace/ace.js"></script>
+    <script type="text/javascript" src="lib/ace/mode-javascript.js"></script>
+    <script type="text/javascript" src="lib/ace/theme-solarized_dark.js"></script>
+
+    <script type="text/javascript" src="models/logic.js"></script>
+    <script type="text/javascript" src="models/retroid_context.js"></script>
+
+    <script type="text/javascript" src="presenters/editor.js"></script>
+    <script type="text/javascript" src="presenters/retroid.js"></script>
+    <script type="text/javascript" src="presenters/logic_list.js"></script>
+    <script type="text/javascript" src="presenters/page.js"></script>
+
+    <script type="text/javascript" src="ui/editor_ui.js"></script>
+    <script type="text/javascript" src="ui/retroid_ui.js"></script>
+    <script type="text/javascript" src="ui/retroid_small_ui.js"></script>
+    <script type="text/javascript" src="ui/logic_list_ui.js"></script>
+    <script type="text/javascript" src="ui/page_ui.js"></script>
+
+    <script type="text/javascript" src="examples.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
