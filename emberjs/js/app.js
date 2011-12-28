@@ -2,25 +2,24 @@ var fixtureData = [
     {
         "fullName":"John Doe",
         "username":"johnny",
-        "rating":1
+        "rating":1,
+        "createAt": "2013"
     },
     {
         "fullName":"Bob Doe",
         "username":"bobby",
-        "rating":2
+        "rating":2,
+        "createAt": "2012"
     },
     {
         "fullName":"Tom Doe",
         "username":"tommy",
-        "rating":3
+        "rating":3,
+        "createAt": "2014"
     }
 ];
 
 var App = Em.Application.create();
-
-App.Entry = Ember.Object.create({
-
-});
 
 App.Entry = Ember.Object.extend({
     fullName: "",
@@ -55,18 +54,11 @@ App.entriesCollection = Ember.ArrayController.create({
             return App.Entry.create(entryData);
         });
         console.debug('loaded entries');
-        this.set('entries', entries);
-        this.set('content', json);
+        this.set('content', entries);
     }
 });
 
 
 
-App.MyView = Em.View.extend({
-  mouseDown: function() {
-    window.alert("hello world!");
-  }
-});
-
-
 App.entriesCollection.loadFixtureData();
+//App.entriesCollection.loadData();

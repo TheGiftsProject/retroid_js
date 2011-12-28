@@ -21,13 +21,11 @@
 </head>
 <body>
   <script type="text/x-handlebars">
-    {{#view App.MyView}}
-      <h1>Hello world!</h1>
-    {{/view}}
-
 
     {{#collection contentBinding="App.entriesCollection"}}
-        Full Name:{{content.fullName}} Username:{{content.username}} Rating:{{content.rating}}
+      {{#with content}}
+        Full Name:{{fullName}} Username:{{username}} Rating:{{rating}} Create At:{{createAt}}
+      {{/with}}
     {{/collection}}
 
   </script>
