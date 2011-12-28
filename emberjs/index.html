@@ -21,13 +21,25 @@
 </head>
 <body>
   <script type="text/x-handlebars">
-
-    {{#collection contentBinding="App.entriesCollection"}}
+    <h2>Entries By Date #1</h2>
+    <ul>
+    {{#collection contentBinding="App.EntriesCollection"}}
       {{#with content}}
-        Full Name:{{fullName}} Username:{{username}} Rating:{{rating}} Create At:{{createAt}}
+        <li>Full Name:{{fullName}} Username:{{username}} Rating:{{rating}} Create At:{{createAt}}</li>
       {{/with}}
     {{/collection}}
+    </ul>
+  </script>
 
+  <script type="text/x-handlebars">
+    <h2>Entries By Date #2</h2>
+    {{#each App.EntriesCollection}}
+      {{#view App.EntryRowView contentBinding="this"}}
+        {{#with content}}
+            Full Name:{{fullName}} Username:{{username}} Rating:{{rating}} Create At:{{createAt}}
+        {{/with}}
+      {{/view}}
+    {{/each}}
   </script>
 
   <script src="js/libs/jquery-1.7.1.js"></script>

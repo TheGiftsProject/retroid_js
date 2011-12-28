@@ -27,10 +27,9 @@ App.Entry = Ember.Object.extend({
     rating: 0
 });
 
-App.entriesCollection = Ember.ArrayController.create({
+App.EntriesCollection = Ember.ArrayController.create({
     // The array of Contact objects that backs the array controller.
     content: [],
-    entries: [],
 
     loadFixtureData: function(){
         this.crateEntriesFromJson(fixtureData);
@@ -59,6 +58,9 @@ App.entriesCollection = Ember.ArrayController.create({
 });
 
 
+App.EntryRowView = Ember.View.extend({
 
-App.entriesCollection.loadFixtureData();
-//App.entriesCollection.loadData();
+});
+
+App.EntriesCollection.loadFixtureData();
+//App.EntriesCollection.loadData();
