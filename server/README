@@ -1,0 +1,11 @@
+How to use:
+
+All urls return json and can be made to return jsonp by adding a callback param
+All calls return at the very least { ack: "success" || "failure" }
+All calls use get, not post
+
+/logics -- returns all logics { objects: [logics] }
+/logics/:id -- returns the logic { object: [logic] }
+/logics/create -- expect author, name, code params. returns { object: [newly created logic] }
+/logics/:id/vote -- expects vote param (which should be 'up' or 'down'). returns { object: [updated logic] }
+/logics/:id/destroy -- deleted the logic. returns { deleted_object: [logic_id] }
