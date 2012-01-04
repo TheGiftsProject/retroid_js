@@ -21,13 +21,13 @@ var fixtureData = [
 
 var App = Em.Application.create();
 
-App.Entry = Ember.Object.extend({
+App.entry = Ember.Object.extend({
     fullName: "",
     username: "",
     rating: 0
 });
 
-App.EntriesCollection = Ember.ArrayController.create({
+App.entriesCollection = Ember.ArrayController.create({
     // The array of Contact objects that backs the array controller.
     content: [],
 
@@ -50,7 +50,7 @@ App.EntriesCollection = Ember.ArrayController.create({
 
     crateEntriesFromJson: function(json){
         var entries = json.map(function(entryData) {
-            return App.Entry.create(entryData);
+            return App.entry.create(entryData);
         });
         console.debug('loaded entries');
         this.set('content', entries);
@@ -58,9 +58,9 @@ App.EntriesCollection = Ember.ArrayController.create({
 });
 
 
-App.EntryRowView = Ember.View.extend({
+App.entryRowView = Ember.View.extend({
 
 });
 
-App.EntriesCollection.loadFixtureData();
+App.entriesCollection.loadFixtureData();
 //App.EntriesCollection.loadData();
