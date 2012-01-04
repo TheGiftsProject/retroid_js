@@ -1,0 +1,17 @@
+.templates {
+    display:none; 
+}
+ {
+    
+}
+#retroid_backbone #editor .function_top {
+  vertical-align: top;
+}
+#retroid_backbone #editor #code_input {
+  display:block;
+  
+  width: 800px;
+  max-width:800px;
+  height: 400px;
+  max-height:400px;
+}
