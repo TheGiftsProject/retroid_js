@@ -45,8 +45,19 @@
             height: 75px;
         }
 
-        button.submit {
+        button {
             float: right;
+        }
+
+        .logic_details_popup {
+            position: absolute;
+            background-color: white;
+            border: 3px solid black;
+            border-radius: 5px;
+        }
+
+        .logic_details_submit {
+            display: block;
         }
     </style>
 </head>
@@ -59,6 +70,7 @@
             <br/>
             <span>}</span>
             <button class="submit">Run</button>
+            <button class="save">Save</button>
         </div>
         <div class="main_retroid">
         </div>
@@ -79,6 +91,18 @@
         <li class="item"></li>
     </script>
 
+    <script type="text/tmpl" id="logic_details_popup_template">
+        <div class="logic_details_popup">
+            <label for="logic_details_author">Author:</label>
+            <input type="text" id="logic_details_author"></input>
+            <br />
+            <label for="logic_details_name">Animation Name:</label>
+            <input type="text" id="logic_details_name"></input>
+            <button class="logic_details_submit">Submit</button>
+            <button class="logic_details_cancel">Cancel</button>
+        </div>
+    </script>
+
     <!-- JAVASCRIPTS -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="lib/jquery.tmpl.min.js"></script>
@@ -93,15 +117,16 @@
     <script type="text/javascript" src="presenters/editor.js"></script>
     <script type="text/javascript" src="presenters/retroid.js"></script>
     <script type="text/javascript" src="presenters/logic_list.js"></script>
+    <script type="text/javascript" src="presenters/logic_details_popup.js"></script>
     <script type="text/javascript" src="presenters/page.js"></script>
 
     <script type="text/javascript" src="ui/editor_ui.js"></script>
     <script type="text/javascript" src="ui/retroid_ui.js"></script>
     <script type="text/javascript" src="ui/retroid_small_ui.js"></script>
     <script type="text/javascript" src="ui/logic_list_ui.js"></script>
+    <script type="text/javascript" src="ui/logic_details_popup_ui.js"></script>
     <script type="text/javascript" src="ui/page_ui.js"></script>
 
-    <script type="text/javascript" src="examples.js"></script>
     <script type="text/javascript" src="index.js"></script>
 </body>
 </html>
