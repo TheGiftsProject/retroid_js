@@ -25,7 +25,7 @@ RetroidUI.loadImages = function() {
     for (var type in RetroidUI.images) {
         if (typeof RetroidUI.images[type] === "string") {
             image = new Image();
-            image.src = RetroidUI.images[type]
+            image.src = RetroidUI.images[type];
             RetroidUI.images[type] = image;
         }
     }
