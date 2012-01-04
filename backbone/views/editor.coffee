@@ -1,16 +1,23 @@
 class window.Retroid.Views.EditorView extends Backbone.View
-  editor_id:"script_input"
-  el: $("section#editor")
-  events: 
-      "click .run"  : "run"
-      "click .save" : "save"
+  template: _.template($("#templates .editor").html())
+  
+  events:
+    "keyup" : "change"
 
   initialize: ->
-    @editor = $("#{@editor_id}")
-  
-  run: ->
-    alert "run"
-  save: ->
-    alert "save"
+    # @model.bind('change', @render, @)
+    @model.bind('destroy', @remove, @)
+    @
 
-  _initAce: ->
+  render: ->
+    console.log "rending the code editor"
+    $(@el).html(@template(@model.toJSON()))
+    @
+  
+  getCode: ->
+    @model.get("code")
+  
+  change: ->
+    @model.set(code:$("textarea",@el).val())
+
+  

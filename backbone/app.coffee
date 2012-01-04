@@ -1,20 +1,17 @@
 window.Retroid or= {}
 window.Retroid.Views or= {}
-
+window.Retroid.Models or= {}
 class window.Retroid.AppView extends Backbone.View
   el: $("#retroid_backbone")
   
   initialize: ->
-    @_initUI()
-    @_initEditor()
+    @_initEditorHolder()
     @_initLargeClock()
+    @
   
-  _initUI: ->
+  _initEditorHolder: ->
     @ui = 
-      editor: $("section#editor", @el)
-    
-  _initEditor: ->
-    @editor = new Retroid.Views.EditorView()
+      editorHolder: new Retroid.Views.EditorHolderView()
 
   _initLargeClock: ->
     @largeClock = new Retroid.Views.LargeClockView()

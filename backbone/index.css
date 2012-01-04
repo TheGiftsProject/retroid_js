@@ -1,8 +1,8 @@
-.templates {
+#templates {
     display:none; 
 }
- {
-    
+#editor_holder {
+  float:left;
 }
 #retroid_backbone #editor .function_top {
   vertical-align: top;

@@ -1,4 +1,8 @@
 class window.Retroid.Views.LargeClockView extends Backbone.View
-  el: $("#large_clock canvas")
+  
+  el: $("#large_clock")
+  
   initialize: ->
-    console.log "initializing the large clock"
+    @retroid_ui = new RetroidUI(@el,=>@retroid_ui.reset())
+  
+  run: ->

@@ -9,28 +9,32 @@
       EditorView.__super__.constructor.apply(this, arguments);
     }
 
-    EditorView.prototype.editor_id = "script_input";
-
-    EditorView.prototype.el = $("section#editor");
+    EditorView.prototype.template = _.template($("#templates .editor").html());
 
     EditorView.prototype.events = {
-      "click .run": "run",
-      "click .save": "save"
+      "keyup": "change"
     };
 
     EditorView.prototype.initialize = function() {
-      return this.editor = $("" + this.editor_id);
+      this.model.bind('destroy', this.remove, this);
+      return this;
     };
 
-    EditorView.prototype.run = function() {
-      return alert("run");
+    EditorView.prototype.render = function() {
+      console.log("rending the code editor");
+      $(this.el).html(this.template(this.model.toJSON()));
+      return this;
     };
 
-    EditorView.prototype.save = function() {
-      return alert("save");
+    EditorView.prototype.getCode = function() {
+      return this.model.get("code");
     };
 
-    EditorView.prototype._initAce = function() {};
+    EditorView.prototype.change = function() {
+      return this.model.set({
+        code: $("textarea", this.el).val()
+      });
+    };
 
     return EditorView;
 

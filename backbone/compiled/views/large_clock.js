@@ -9,11 +9,16 @@
       LargeClockView.__super__.constructor.apply(this, arguments);
     }
 
-    LargeClockView.prototype.el = $("#large_clock canvas");
+    LargeClockView.prototype.el = $("#large_clock");
 
     LargeClockView.prototype.initialize = function() {
-      return console.log("initializing the large clock");
+      var _this = this;
+      return this.retroid_ui = new RetroidUI(this.el, function() {
+        return _this.retroid_ui.reset();
+      });
     };
+
+    LargeClockView.prototype.run = function() {};
 
     return LargeClockView;
 
