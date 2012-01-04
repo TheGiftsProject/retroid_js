@@ -5,8 +5,8 @@
 		<span class="author"><%= logic.author %></span>
 	</div>
 	<div class="voter">
-		<div class="up">/\</div>
-		<div class="score">  </div>
-		<div class="down">\/</div>
+		<a href="javascript:;" class="up">▲</a>
+		<div class="score"><%= logic.score || 0 %></div>
+		<a href="javascript:;" class="down">▼</a>
 	</div>
 </li>
