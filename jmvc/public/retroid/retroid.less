@@ -1,0 +1,64 @@
+body {
+	font-family:Lucida Sans,Lucida Grande,Arial,sans-serif;
+	margin:0;
+	line-height:22px;
+	width:960px;
+	margin:0 auto;
+}
+h1 {
+	padding:30px 0 10px;
+	margin-top:0;
+	line-height:30px;
+}
+h2,h3,h4,h5{
+	// margin: 0;
+}
+
+ul{
+	padding:0 0 0 15px; 
+	list-style : none;
+}
+
+a {
+	color:#ae3d26;
+	text-decoration:none;
+}
+
+a:hover { text-decoration:underline; }
+
+hr {
+	border:none;
+	border-top:1px dotted #000;
+}
+
+.create{
+	overflow: hidden;
+	background: #ddd;
+	.editor{
+		float: left;
+		#script_input{
+			position: relative;
+			width: 600px;
+			height: 400px;
+		}
+		.actions{
+			float: right;
+		}
+	}
+	.retroid-large{
+		float:left;
+	}
+}
+
+.view{
+	overflow: hidden;
+	.logic-list{
+		float: left;
+		width: 450px;
+		background: #eee;
+		&.top{
+			margin-right: 60px;	
+		}
+
+	}
+}

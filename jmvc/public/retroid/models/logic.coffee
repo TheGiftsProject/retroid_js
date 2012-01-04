@@ -1,0 +1,4 @@
+$.Model "Retroid.Models.Logic",
+	{}
+,
+	{}
