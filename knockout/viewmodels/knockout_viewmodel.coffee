@@ -1,3 +1,3 @@
 class KnockoutViewModel
-	constructor: ->
-		ko.applyBindings(@)
+	constructor: (element_id)->
+		ko.applyBindings(@, document.getElementById("##{element_id}"))

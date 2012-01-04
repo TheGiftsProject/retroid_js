@@ -1,3 +1,3 @@
 var aceEditor;
 
-aceEditor = new AceEditor();
+aceEditor = new AceEditor('script_input');

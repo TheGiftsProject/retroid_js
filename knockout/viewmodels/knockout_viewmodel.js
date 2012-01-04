@@ -2,8 +2,8 @@ var KnockoutViewModel;
 
 KnockoutViewModel = (function() {
 
-  function KnockoutViewModel() {
-    ko.applyBindings(this);
+  function KnockoutViewModel(element_id) {
+    ko.applyBindings(this, document.getElementById("#" + element_id));
   }
 
   return KnockoutViewModel;

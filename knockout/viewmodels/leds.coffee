@@ -1,3 +1,4 @@
 class LedsViewModel extends KnockoutViewModel
-	constructor: ->
-		super()
+	constructor: (element_id)->
+		
+		super(element_id)

@@ -5,9 +5,9 @@ EditorViewModel = (function() {
 
   __extends(EditorViewModel, KnockoutViewModel);
 
-  function EditorViewModel() {
-    EditorViewModel.__super__.constructor.call(this);
-    this.text = "empty";
+  function EditorViewModel(element_id) {
+    this.aceText = ko.observable('moo');
+    EditorViewModel.__super__.constructor.call(this, element_id);
   }
 
   return EditorViewModel;
