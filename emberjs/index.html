@@ -21,31 +21,40 @@
 </head>
 <body>
   <script type="text/x-handlebars">
-    <h2>Entries By Date #1</h2>
-    <ul>
-    {{#collection contentBinding="App.entriesCollection"}}
-      {{#with content}}
-        <li>Full Name:{{fullName}} Username:{{username}} Rating:{{rating}} Create At:{{createAt}}</li>
-      {{/with}}
-    {{/collection}}
-    </ul>
+
   </script>
 
   <script type="text/x-handlebars">
-    <h2>Entries By Date #2</h2>
-    <ul>
-    {{#each App.entriesCollection}}
-      {{#view App.entryRowView contentBinding="this"}}
-        {{#with content}}
-            <li>Full Name:{{fullName}} Username:{{username}} Rating:{{rating}} Create At:{{createAt}}</li>
-        {{/with}}
-      {{/view}}
-    {{/each}}
-    </ul>
+
+
+    <h2>Entries By Date</h2>
+    {{#collection App.entryListView contentBinding="App.entriesCollection"}}
+      {{#with content}}
+        Full Name:{{fullName}} Username:{{username}} Rating:{{rating}} Create At:{{createAt}} Code:{{code}}
+      {{/with}}
+      {{#view showCodeButton class="btn" contentBinding="content"}}Show{{/view}}
+    {{/collection}}
+
+
+    <hr>
+
+
+    <h2>Entries By Rating</h2>
+    {{#collection App.entryListView contentBinding="App.entriesCollection.names"}}
+      {{#with content}}
+        Full Name:{{fullName}} Username:{{username}} Rating:{{rating}} Create At:{{createAt}} Code:{{code}}
+      {{/with}}
+      {{#view showCodeButton class="btn" contentBinding="content"}}Show{{/view}}
+    {{/collection}}
+      
+      
+    <h2>Code View</h2>
+    {{view App.codeView id="code-view" placeholder="Enter Your Code"}}
   </script>
 
+
   <script src="js/libs/jquery-1.7.1.js"></script>
-  <script src="js/libs/ember-0.9.3.min.js"></script>
+  <script src="js/libs/ember-0.9.3.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
