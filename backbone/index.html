@@ -1,7 +1,7 @@
 <html>
     <head>
         <link href="index.css" rel="stylesheet" type="text/css"></link>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="lib/jquery.js"></script>
         <script type="text/javascript" src="lib/underscore.js"></script>
         <script type="text/javascript" src="lib/backbone.js"></script>
     </head>
@@ -22,7 +22,8 @@
                 <button class="save" disabled>Save</button>
             </section>
             <section id="large_clock"></section>
-            <section id="votes"></section>
+            <section id="best"></section>
+            <section id="newest"></section>
         </div>
 
         <!-- TEMPLATES/VIEWS -->
@@ -38,16 +39,31 @@
             <script type="text/tmpl" id="retroid_small_ui_template">
                 <canvas width="75" height="75"></canvas>
             </script>
+            <script type="text/tmpl" id="submit_popup">
+                    <input type="text" class="name" placeholder="work name"></input>
+                    <input type="text" class="email" placeholder="your email"></input>
+                    <button class="submit">submit</button>
+                    <button class="cancel">cancel</button>
+            </script>
+            <script type="text/tmpl" id="participant">
+            </script>
         </div>
         <!-- JUNK from Gartner -->
         <script type="text/javascript" src="lib/retroid_ui.js"></script>
         <!-- APP Stuff -->
         <script type="text/javascript" src="compiled/app.js"></script>
-        <script type="text/javascript" src="compiled/models/large_clock_model.js"></script>
-        <script type="text/javascript" src="compiled/models/editor.js"></script>
+        <script type="text/javascript" src="compiled/lib/code_runner.js"></script>
+        <!-- Models -->
+        <script type="text/javascript" src="compiled/models/logic_model.js"></script>
+        <script type="text/javascript" src="compiled/models/participant_model.js"></script>
+        <script type="text/javascript" src="compiled/models/participants_model.js"></script>
+        <!-- Views -->
         <script type="text/javascript" src="compiled/views/editor_holder.js"></script>
         <script type="text/javascript" src="compiled/views/editor.js"></script>
         <script type="text/javascript" src="compiled/views/large_clock.js"></script>
+        <script type="text/javascript" src="compiled/views/submit.js"></script>
+        <script type="text/javascript" src="compiled/views/participants_holder.js"></script>
+        <script type="text/javascript" src="compiled/views/participant.js"></script>
         <script type="text/javascript">
             // initializer one-liner
             $(function() {

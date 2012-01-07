@@ -5,19 +5,16 @@ class window.Retroid.Views.EditorView extends Backbone.View
     "keyup" : "change"
 
   initialize: ->
-    # @model.bind('change', @render, @)
-    @model.bind('destroy', @remove, @)
-    @
+    _.bindAll @, "change"
 
   render: ->
-    console.log "rending the code editor"
     $(@el).html(@template(@model.toJSON()))
     @
   
   getCode: ->
-    @model.get("code")
+    @model.WrappedCode()
   
   change: ->
-    @model.set(code:$("textarea",@el).val())
+    @model.set(code:@$("textarea").val())
 
   

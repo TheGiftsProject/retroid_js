@@ -1,9 +1,10 @@
 (function() {
-  var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+  var __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
-  window.Retroid.Views.EditorView = (function() {
+  window.Retroid.Views.EditorView = (function(_super) {
 
-    __extends(EditorView, Backbone.View);
+    __extends(EditorView, _super);
 
     function EditorView() {
       EditorView.__super__.constructor.apply(this, arguments);
@@ -16,28 +17,26 @@
     };
 
     EditorView.prototype.initialize = function() {
-      this.model.bind('destroy', this.remove, this);
-      return this;
+      return _.bindAll(this, "change");
     };
 
     EditorView.prototype.render = function() {
-      console.log("rending the code editor");
       $(this.el).html(this.template(this.model.toJSON()));
       return this;
     };
 
     EditorView.prototype.getCode = function() {
-      return this.model.get("code");
+      return this.model.WrappedCode();
     };
 
     EditorView.prototype.change = function() {
       return this.model.set({
-        code: $("textarea", this.el).val()
+        code: this.$("textarea").val()
       });
     };
 
     return EditorView;
 
-  })();
+  })(Backbone.View);
 
 }).call(this);

@@ -1,9 +1,10 @@
-class window.Retroid.Models.EditorModel extends Backbone.Model
-  defaults: ->
+class window.Retroid.Models.Logic extends Backbone.Model
+  defaults:
+    leds: [0,0,0,0,0,0,0,0,0,0,0,0]
     code: " var returns = [];
             var last = false;
             var all_off = true;
-
+            
             for (var i = 0; i < leds.length; i++) {
                 if (last) {
                     last = false;
@@ -20,21 +21,19 @@ class window.Retroid.Models.EditorModel extends Backbone.Model
             if (last || all_off) {
                 returns[0] = 1;
             }
-
+            
             return returns;"
 
+  initialize: ->
 
-function Logic(text) {
-    this.text = text;
-    this.logicFunc = new Function(Logic.processFunctionText(this.text));
-}
+  WrappedCode: (code = @get('code'))->
+    "(function (leds){#{code}})"
 
-Logic.prototype.func = function() {
-    return _.bind(this.logicFunc, {}); // create a new context for the function to run in -- so we don't pollute the window object
-};
-
-Logic.processFunctionText = function(text) {
-    return "var leds = arguments[0];" + text + "; return leds;";
-};
-
-
+  IsValid: (code = @.WrappedCode())->
+    result = true
+    try
+      eval("#{code}(#{@get('leds')})")
+    catch error
+        result = false
+    result
+  
