@@ -1,0 +1,5 @@
+finish logic list
+error box (maybe even jump-to-line on click)
+spinners
+style
+polish
