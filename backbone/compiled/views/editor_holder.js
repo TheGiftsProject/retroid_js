@@ -20,17 +20,19 @@
     };
 
     EditorHolderView.prototype.initialize = function() {
-      this.model.get("logic").bind('change:code', this.codeChanged, this);
+      this.logic = this.model.get("logic");
+      this.logic.bind('change:code', this.codeChanged, this);
+      this.model.bind("change:id", this.participantSaved, this);
       return this.ui = {
         editor: new Retroid.Views.EditorView({
           el: this.editor,
-          model: this.model.get("logic")
+          model: this.logic
         }).render()
       };
     };
 
     EditorHolderView.prototype.codeChanged = function() {
-      this.setRunState(this.model.get("logic").IsValid());
+      this.setRunState(this.logic.IsValid());
       return this.setSaveState(false);
     };
 
@@ -38,18 +40,18 @@
       var code,
         _this = this;
       code = this.model.GetCode();
-      this.Stop();
+      this.stop();
       this.interval = setInterval((function() {
         var toEval;
-        toEval = "" + code + "([" + (_this.model.get('logic').get('leds')) + "])";
-        return _this.model.get('logic').set({
+        toEval = "" + code + "([" + (_this.logic.get('leds')) + "])";
+        return _this.logic.set({
           leds: eval(toEval)
         });
       }), 100);
       return this.setSaveState(true);
     };
 
-    EditorHolderView.prototype.Stop = function() {
+    EditorHolderView.prototype.stop = function() {
       if (this.interval) return clearInterval(this.interval);
     };
 
@@ -60,8 +62,9 @@
       return $(this.el).append(this.ui.submitView.el);
     };
 
-    EditorHolderView.prototype.codeValidationError = function() {
-      return this.setRunState(false);
+    EditorHolderView.prototype.participantSaved = function() {
+      this.stop();
+      return this.ui.submitView.remove();
     };
 
     EditorHolderView.prototype.setRunState = function(state) {

@@ -27,7 +27,6 @@
       this._bindModelEvents();
       this._initEditorHolder(this.participant);
       this._initLargeClock(this.participant);
-      this._initParticipants();
       return this;
     };
 
@@ -37,8 +36,7 @@
 
     AppView.prototype._initModels = function() {
       this.participant = new Retroid.Models.Participant();
-      this.bestParticipants = new Retroid.Models.Participants();
-      return this.newParticipants = new Retroid.Models.Participants();
+      return this.participants = new Retroid.Models.Participants();
     };
 
     AppView.prototype._initEditorHolder = function(participant) {
@@ -53,21 +51,14 @@
       });
     };
 
-    AppView.prototype._initBest = function() {
-      return this.ui.bestParticipants = new Retroid.Views.ParticipantsView({
-        collection: this.bestParticipants
-      });
-    };
-
-    AppView.prototype._initNewest = function() {
-      return this.ui.newParticipants = new Retroid.Views.ParticipantsView({
-        collection: this.newParticipant
+    AppView.prototype._initParticipantsView = function() {
+      return this.ui.participants = new Retroid.Views.ParticipantsView({
+        collection: this.participants
       });
     };
 
     AppView.prototype._participantAdded = function() {
-      this.bestParticipants.add(this.participant);
-      return this.newParticipant.add(this.participant);
+      return this.participants.add(this.participant);
     };
 
     return AppView;

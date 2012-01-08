@@ -14,7 +14,7 @@
       name: "",
       email: "",
       dateAdded: "",
-      rating: "",
+      rating: 0,
       logic: new Retroid.Models.Logic()
     };
 

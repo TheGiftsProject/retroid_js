@@ -16,7 +16,7 @@
 
     SubmitView.prototype.events = {
       "click .cancel": "close",
-      "click .save": "save"
+      "click .submit": "save"
     };
 
     SubmitView.prototype.render = function() {
@@ -28,7 +28,13 @@
       return $(this.el).remove();
     };
 
-    SubmitView.prototype.save = function() {};
+    SubmitView.prototype.save = function() {
+      return this.model.set({
+        name: this.$(".name").val(),
+        email: this.$(".email").val(),
+        id: Math.random()
+      });
+    };
 
     return SubmitView;
 

@@ -10,16 +10,16 @@
       ParticipantsView.__super__.constructor.apply(this, arguments);
     }
 
-    ParticipantsView.prototype.id = "votes";
+    ParticipantsView.prototype.el = $("#participants");
 
     ParticipantsView.prototype.initialize = function() {
       return this.collection.bind("add", this.added, this);
     };
 
-    ParticipantsView.prototype._initBest = function() {};
-
-    ParticipantsView.prototype.added = function() {
-      return console.log("participant added");
+    ParticipantsView.prototype.added = function(participant) {
+      return this.el.append(new Retroid.Views.ParticipantView({
+        this.model: participant
+      }));
     };
 
     return ParticipantsView;

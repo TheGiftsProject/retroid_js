@@ -22,8 +22,7 @@
                 <button class="save" disabled>Save</button>
             </section>
             <section id="large_clock"></section>
-            <section id="best"></section>
-            <section id="newest"></section>
+            <section id="participants"></section>
         </div>
 
         <!-- TEMPLATES/VIEWS -->
@@ -40,12 +39,24 @@
                 <canvas width="75" height="75"></canvas>
             </script>
             <script type="text/tmpl" id="submit_popup">
-                    <input type="text" class="name" placeholder="work name"></input>
-                    <input type="text" class="email" placeholder="your email"></input>
+                    <input type="text" class="name" placeholder="work name" value="d"></input>
+                    <input type="text" class="email" placeholder="your email" value="d@d.com"></input>
                     <button class="submit">submit</button>
                     <button class="cancel">cancel</button>
             </script>
             <script type="text/tmpl" id="participant">
+                <div class="participant" id="participant<%=id%>">
+                    <div class="left">
+                        <div class="name"><%=name%></div>
+                        <div class="email"><%=email%></div>
+                        <div class="votes"><%=votes%></div>
+                    </div>
+                    <div class="right">
+                        <div class="smallClock">
+
+                        </div>
+                    </div>
+                </div>
             </script>
         </div>
         <!-- JUNK from Gartner -->
@@ -62,8 +73,8 @@
         <script type="text/javascript" src="compiled/views/editor.js"></script>
         <script type="text/javascript" src="compiled/views/large_clock.js"></script>
         <script type="text/javascript" src="compiled/views/submit.js"></script>
-        <script type="text/javascript" src="compiled/views/participants_holder.js"></script>
         <script type="text/javascript" src="compiled/views/participant.js"></script>
+        <script type="text/javascript" src="compiled/views/participants.js"></script>
         <script type="text/javascript">
             // initializer one-liner
             $(function() {

@@ -11,7 +11,7 @@ class window.Retroid.AppView extends Backbone.View
     @_bindModelEvents()
     @_initEditorHolder(@participant)
     @_initLargeClock(@participant)
-    @_initParticipants()
+    # @_initParticipantsView()
     @
   
   _bindModelEvents: ->
@@ -19,8 +19,7 @@ class window.Retroid.AppView extends Backbone.View
 
   _initModels: ->
     @participant = new Retroid.Models.Participant()
-    @bestParticipants = new Retroid.Models.Participants()
-    @newParticipants = new Retroid.Models.Participants()
+    @participants = new Retroid.Models.Participants()
 
   _initEditorHolder: (participant)->
     @ui.editorHolder= new Retroid.Views.EditorHolderView(model: participant)
@@ -28,13 +27,9 @@ class window.Retroid.AppView extends Backbone.View
   _initLargeClock:(participant) ->
     @ui.largeClock = new Retroid.Views.LargeClockView(model: participant.get("logic"))
   
-  _initBest: ->
-    @ui.bestParticipants = new Retroid.Views.ParticipantsView(collection: @bestParticipants)
+  _initParticipantsView: ->
+    @ui.participants = new Retroid.Views.ParticipantsView(collection: @participants)
   
-  _initNewest: ->
-    @ui.newParticipants = new Retroid.Views.ParticipantsView(collection: @newParticipant)
-
   _participantAdded: ->
-    @bestParticipants.add(@participant)
-    @newParticipant.add(@participant)
-    
+    @participants.add(@participant)
+

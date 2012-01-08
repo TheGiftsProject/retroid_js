@@ -3,7 +3,7 @@ class Retroid.Views.SubmitView extends Backbone.View
   className: "submit_popup"
   events:
     "click .cancel": "close"
-    "click .save": "save"
+    "click .submit": "save"
 
   render: ->
     $(@el).html(@template(@model.toJSON()))
@@ -13,4 +13,4 @@ class Retroid.Views.SubmitView extends Backbone.View
     $(@el).remove()
   
   save: ->
-    
+    @model.set(name:@$(".name").val(),email:@$(".email").val(),id:Math.random())

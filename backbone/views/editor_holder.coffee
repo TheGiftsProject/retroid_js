@@ -7,33 +7,36 @@ class window.Retroid.Views.EditorHolderView extends Backbone.View
       "click .save" : "save"
 
   initialize:  ->
-    @model.get("logic").bind('change:code', @codeChanged, @)
+    @logic = @model.get("logic")
+    @logic.bind 'change:code', @codeChanged, @
+    @model.bind "change:id", @participantSaved, @
     @ui = 
-      editor: new Retroid.Views.EditorView(el: @editor, model: @model.get("logic")).render()
+      editor: new Retroid.Views.EditorView(el: @editor, model: @logic).render()
   
   codeChanged: ->
-    @setRunState(@model.get("logic").IsValid())
+    @setRunState(@logic.IsValid())
     @setSaveState(false)
   
   run: ->
     code = @model.GetCode()
-    @Stop()
+    @stop()
     @interval = setInterval (=>
-      toEval = "#{code}([#{@model.get('logic').get('leds')}])"
-      @model.get('logic').set(leds:eval(toEval))
+      toEval = "#{code}([#{@logic.get('leds')}])"
+      @logic.set(leds:eval(toEval))
     ), 100
     @setSaveState(true)
   
-  Stop: ->
+  stop: ->
     clearInterval @interval if @interval
 
   save: ->
     @ui.submitView = new Retroid.Views.SubmitView(model: @model).render()
     $(@el).append(@ui.submitView.el)
+    
+  participantSaved: ->
+    @stop()
+    @ui.submitView.remove()
 
-  codeValidationError: ->
-    @setRunState(false)
-  
   setRunState: (state) ->
     $(".run", @el).prop('disabled', not state)
 

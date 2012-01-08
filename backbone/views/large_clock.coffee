@@ -1,5 +1,4 @@
 class window.Retroid.Views.LargeClockView extends Backbone.View
-  
   el: $("#large_clock")
   
   initialize: ->

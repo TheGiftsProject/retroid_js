@@ -10,6 +10,13 @@
       ParticipantView.__super__.constructor.apply(this, arguments);
     }
 
+    ParticipantView.prototype.template = _.template($("#templates #participant").html());
+
+    ParticipantView.prototype.render = function() {
+      $(this.el).html(this.template(this.model.toJSON()));
+      return this;
+    };
+
     return ParticipantView;
 
   })(Backbone.View);
