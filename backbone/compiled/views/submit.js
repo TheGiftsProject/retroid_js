@@ -29,10 +29,16 @@
     };
 
     SubmitView.prototype.save = function() {
-      return this.model.set({
-        name: this.$(".name").val(),
-        email: this.$(".email").val(),
-        id: Math.random()
+      var _this = this;
+      this.model.set({
+        author: this.$(".name").val(),
+        name: this.$(".email").val()
+      });
+      $(this.el).html("SAVING...");
+      return this.model.save((function() {
+        return _this.close;
+      }), {
+        silent: true
       });
     };
 

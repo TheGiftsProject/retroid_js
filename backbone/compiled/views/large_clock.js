@@ -14,10 +14,11 @@
 
     LargeClockView.prototype.initialize = function() {
       var _this = this;
-      this.retroid_ui = new RetroidUI(this.el, function() {
+      this.retroid_ui = new RetroidUI(this.el, "#retroid_ui_template", function() {
         return _this.retroid_ui.reset();
       });
-      return this.model.bind('change:leds', this.renderFrame, this);
+      this.model.bind('change:leds', this.renderFrame, this);
+      return this;
     };
 
     LargeClockView.prototype.renderFrame = function() {

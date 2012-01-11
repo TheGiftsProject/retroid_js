@@ -1,4 +1,4 @@
-class window.Retroid.Models.Logic extends Backbone.Model
+class Retroid.Models.Logic extends Backbone.Model
   defaults:
     leds: [0,0,0,0,0,0,0,0,0,0,0,0]
     code: " var returns = [];
@@ -24,11 +24,19 @@ class window.Retroid.Models.Logic extends Backbone.Model
             
             return returns;"
 
-  initialize: ->
-
   WrappedCode: (code = @get('code'))->
-    "(function (leds){#{code}})"
+    "(function (leds){#{code};return leds;})"
+  
+  Run: ->
+    @Stop()
+    @interval = setInterval (=>
+      toEval = "#{@WrappedCode()}([#{@get('leds')}])"
+      @set(leds: eval(toEval))
+    ), 100
 
+  Stop: ->
+    clearInterval @interval if @interval
+    
   IsValid: (code = @.WrappedCode())->
     result = true
     try

@@ -13,13 +13,23 @@
     ParticipantsView.prototype.el = $("#participants");
 
     ParticipantsView.prototype.initialize = function() {
-      return this.collection.bind("add", this.added, this);
+      return this.collection.bind("reset", this.fetched, this);
     };
 
-    ParticipantsView.prototype.added = function(participant) {
-      return this.el.append(new Retroid.Views.ParticipantView({
-        this.model: participant
-      }));
+    ParticipantsView.prototype.fetched = function() {
+      var participant, participantView, _i, _len, _ref, _results;
+      this.el.children().remove();
+      _ref = this.collection.models;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        participant = _ref[_i];
+        if (!participant.get("logic").IsValid()) continue;
+        participantView = new Retroid.Views.ParticipantView({
+          model: participant
+        });
+        _results.push(this.el.append(participantView.render().el));
+      }
+      return _results;
     };
 
     return ParticipantsView;

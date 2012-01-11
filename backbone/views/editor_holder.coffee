@@ -15,26 +15,19 @@ class window.Retroid.Views.EditorHolderView extends Backbone.View
   
   codeChanged: ->
     @setRunState(@logic.IsValid())
+    @logic.Stop()
     @setSaveState(false)
   
   run: ->
-    code = @model.GetCode()
-    @stop()
-    @interval = setInterval (=>
-      toEval = "#{code}([#{@logic.get('leds')}])"
-      @logic.set(leds:eval(toEval))
-    ), 100
+    @logic.Run()
     @setSaveState(true)
-  
-  stop: ->
-    clearInterval @interval if @interval
 
   save: ->
     @ui.submitView = new Retroid.Views.SubmitView(model: @model).render()
     $(@el).append(@ui.submitView.el)
     
   participantSaved: ->
-    @stop()
+    @logic.Stop()
     @ui.submitView.remove()
 
   setRunState: (state) ->

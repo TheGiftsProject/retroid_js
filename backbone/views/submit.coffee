@@ -13,4 +13,6 @@ class Retroid.Views.SubmitView extends Backbone.View
     $(@el).remove()
   
   save: ->
-    @model.set(name:@$(".name").val(),email:@$(".email").val(),id:Math.random())
+    @model.set(author: @$(".name").val(), name: @$(".email").val())
+    $(@el).html("SAVING...")
+    @model.save (()=>@close), silent:true

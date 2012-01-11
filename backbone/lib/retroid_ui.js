@@ -1,14 +1,23 @@
-function RetroidUI(container, cb) {
+function RetroidUI(container, selector, cb, small) {
+    cb = cb || function(){}
+    small = small || false;
     RetroidUI.loadImages(cb);
 
-    this.canvas = $(_.template($("#templates #retroid_ui_template").html())());
-    this.canvas.appendTo(container);
+    this.canvas = $(_.template($("#templates "+selector).html())());
+    if($("canvas", container).length===0) {
+        this.canvas.appendTo(container);
+    }
 
     this._initContext();
 
     this.bounds = { width: this.canvas.attr('width'), height: this.canvas.attr('height') };
-    this.clockCenter = { x: 142.5, y: 178 };
-    this.clockRadius = 111;
+    if(small) {
+        this.clockCenter = { x: this.bounds.width/2, y: this.bounds.height/2 };
+        this.clockRadius = this.bounds.width/2 - 5;
+    } else {
+        this.clockCenter = { x: 142.5, y: 178 };
+        this.clockRadius = 111;
+    }
 }
 
 RetroidUI.images = {
@@ -23,15 +32,14 @@ RetroidUI.images = {
 // loads images once for all instances of RetroidUI
 RetroidUI.loadImages = function(cb) {
     var image = null;
-    var counter = 0;
+    var counter = RetroidUI.images.length;
     function imageLoaded() {
-        counter++;
-        if(counter==RetroidUI.images.length) { cb(); }
+        if(!--counter) { cb(); }
     }
     for (var type in RetroidUI.images) {
-        if (typeof RetroidUI.images[type] === "string") {
+        if (typeof RetroidUI.images[type] === "string") { 
             image = new Image();
-            image.onload = imageLoaded;
+            image.addEventListener('load', imageLoaded, false);
             image.src = RetroidUI.images[type];
             RetroidUI.images[type] = image;
         }

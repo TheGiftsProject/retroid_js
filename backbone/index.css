@@ -25,3 +25,18 @@
   height:50px;
   background-color: grey;
 }
+section#participants {
+  background-color: grey;
+  width:150px;
+}
+section#participants .participant {
+  overflow: hidden;
+}
+section#participants .participant .left {
+  float:left;
+}
+section#participants .participant .right {
+  float:right;
+  width:75px;
+  height:75px;
+}

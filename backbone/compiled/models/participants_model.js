@@ -12,6 +12,23 @@
 
     Participants.prototype.model = Retroid.Models.Participant;
 
+    Participants.prototype.url = "http://sharp-wind-7656.herokuapp.com/logics?callback=?";
+
+    Participants.prototype.parse = function(response) {
+      var models, object, _i, _len, _ref;
+      models = [];
+      _ref = response.objects;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        object = _ref[_i];
+        models.push(new Retroid.Models.Participant().parse(object));
+      }
+      return models;
+    };
+
+    Participants.prototype.comperator = function(participant) {
+      return participant.get("votes");
+    };
+
     return Participants;
 
   })(Backbone.Collection);

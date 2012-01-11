@@ -11,6 +11,13 @@
 
   (_base3 = window.Retroid).Libs || (_base3.Libs = {});
 
+  Backbone.oldSync = Backbone.sync;
+
+  Backbone.sync = function(method, model, options) {
+    if (method === "create") model.url = model.url + "/create?callback=?";
+    return Backbone.oldSync(method, model, options);
+  };
+
   window.Retroid.AppView = (function(_super) {
 
     __extends(AppView, _super);
@@ -22,16 +29,16 @@
     AppView.prototype.el = $("#retroid_backbone");
 
     AppView.prototype.initialize = function() {
+      var _this = this;
       this.ui || (this.ui = {});
       this._initModels();
-      this._bindModelEvents();
       this._initEditorHolder(this.participant);
       this._initLargeClock(this.participant);
+      this._initParticipantsView();
+      setInterval((function() {
+        return _this.participants.fetch();
+      }), 1000);
       return this;
-    };
-
-    AppView.prototype._bindModelEvents = function() {
-      return this.participant.bind("change:id", this._participantAdded, this);
     };
 
     AppView.prototype._initModels = function() {
@@ -55,10 +62,6 @@
       return this.ui.participants = new Retroid.Views.ParticipantsView({
         collection: this.participants
       });
-    };
-
-    AppView.prototype._participantAdded = function() {
-      return this.participants.add(this.participant);
     };
 
     return AppView;

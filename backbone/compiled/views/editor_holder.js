@@ -33,26 +33,13 @@
 
     EditorHolderView.prototype.codeChanged = function() {
       this.setRunState(this.logic.IsValid());
+      this.logic.Stop();
       return this.setSaveState(false);
     };
 
     EditorHolderView.prototype.run = function() {
-      var code,
-        _this = this;
-      code = this.model.GetCode();
-      this.stop();
-      this.interval = setInterval((function() {
-        var toEval;
-        toEval = "" + code + "([" + (_this.logic.get('leds')) + "])";
-        return _this.logic.set({
-          leds: eval(toEval)
-        });
-      }), 100);
+      this.logic.Run();
       return this.setSaveState(true);
-    };
-
-    EditorHolderView.prototype.stop = function() {
-      if (this.interval) return clearInterval(this.interval);
     };
 
     EditorHolderView.prototype.save = function() {
@@ -63,7 +50,7 @@
     };
 
     EditorHolderView.prototype.participantSaved = function() {
-      this.stop();
+      this.logic.Stop();
       return this.ui.submitView.remove();
     };
 

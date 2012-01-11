@@ -45,17 +45,12 @@
                     <button class="cancel">cancel</button>
             </script>
             <script type="text/tmpl" id="participant">
-                <div class="participant" id="participant<%=id%>">
-                    <div class="left">
-                        <div class="name"><%=name%></div>
-                        <div class="email"><%=email%></div>
-                        <div class="votes"><%=votes%></div>
-                    </div>
-                    <div class="right">
-                        <div class="smallClock">
-
-                        </div>
-                    </div>
+                <div class="left">
+                    <div class="author">author:<%=author%></div>
+                    <div class="name">name:<%=name%></div>
+                    <div class="votes">votes:<%=votes%></div>
+                </div>
+                <div class="right">
                 </div>
             </script>
         </div>
@@ -63,7 +58,6 @@
         <script type="text/javascript" src="lib/retroid_ui.js"></script>
         <!-- APP Stuff -->
         <script type="text/javascript" src="compiled/app.js"></script>
-        <script type="text/javascript" src="compiled/lib/code_runner.js"></script>
         <!-- Models -->
         <script type="text/javascript" src="compiled/models/logic_model.js"></script>
         <script type="text/javascript" src="compiled/models/participant_model.js"></script>
@@ -75,6 +69,7 @@
         <script type="text/javascript" src="compiled/views/submit.js"></script>
         <script type="text/javascript" src="compiled/views/participant.js"></script>
         <script type="text/javascript" src="compiled/views/participants.js"></script>
+        <script type="text/javascript" src="compiled/views/small_clock.js"></script>
         <script type="text/javascript">
             // initializer one-liner
             $(function() {
