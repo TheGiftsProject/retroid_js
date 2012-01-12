@@ -1,14 +1,14 @@
-var AceEditor;
+var AceEditorAdapter;
 
-AceEditor = (function() {
+AceEditorAdapter = (function() {
 
-  function AceEditor(element_id, editorViewModel) {
+  function AceEditorAdapter(element_id, editorViewModel) {
     this.element_id = element_id;
     this.editorViewModel = editorViewModel;
     this._initAce();
   }
 
-  AceEditor.prototype._initAce = function() {
+  AceEditorAdapter.prototype._initAce = function() {
     var javascriptMode;
     var _this = this;
     this.ace = window.ace.edit($(this.element_id)[0].id);
@@ -26,6 +26,6 @@ AceEditor = (function() {
     });
   };
 
-  return AceEditor;
+  return AceEditorAdapter;
 
 })();
