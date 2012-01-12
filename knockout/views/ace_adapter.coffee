@@ -1,10 +1,9 @@
 class AceEditor
-	constructor: (@element_id)->
-		@editorViewModel = new EditorViewModel(@element_id)
+	constructor: (@element_id, @editorViewModel)->		
 		@_initAce()
 
 	_initAce: ->
-		@ace = window.ace.edit(@element_id)
+		@ace = window.ace.edit($(@element_id)[0].id)
 		javascriptMode = require('ace/mode/javascript').Mode
 		@ace.getSession().setMode(new javascriptMode())
 		@ace.setTheme('ace/theme/solarized_dark')

@@ -2,16 +2,16 @@ var AceEditor;
 
 AceEditor = (function() {
 
-  function AceEditor(element_id) {
+  function AceEditor(element_id, editorViewModel) {
     this.element_id = element_id;
-    this.editorViewModel = new EditorViewModel(this.element_id);
+    this.editorViewModel = editorViewModel;
     this._initAce();
   }
 
   AceEditor.prototype._initAce = function() {
     var javascriptMode;
     var _this = this;
-    this.ace = window.ace.edit(this.element_id);
+    this.ace = window.ace.edit($(this.element_id)[0].id);
     javascriptMode = require('ace/mode/javascript').Mode;
     this.ace.getSession().setMode(new javascriptMode());
     this.ace.setTheme('ace/theme/solarized_dark');

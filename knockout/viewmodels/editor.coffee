@@ -1,4 +1,3 @@
-class EditorViewModel extends KnockoutViewModel
-	constructor: (element_id)->
-		@aceText = ko.observable('moo')
-		super(element_id)
+class EditorViewModel
+	constructor: ()->
+		@aceText = ko.observable('moo')		

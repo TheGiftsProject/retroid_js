@@ -15,7 +15,7 @@
         }
 
         .editor, .main_retroid {
-            float: left;
+            width:800px;
         }
 
         button.submit {
@@ -31,14 +31,25 @@
             <span>&nbsp;&nbsp;&nbsp;&nbsp;return leds;</span>
             <br/>
             <span>}</span>
-            <button class="submit">Run</button>
+            <button class="submit">Run</button> 
         </div>
-        <p data-bind="text: aceText"></p>
+        <h2>Editor text:</h2>
+        <p data-bind="text: aceEditor.aceText"></p>
         <div class="main_retroid">
         </div>
-
-        <ul class="logic_list">
-        </ul>
+        
+        <h2>Logic List:</h2>
+        <div id="logic_list">
+            <ul data-bind="foreach: logic.logicList">
+                <li>
+                    <span data-bind="text: $data.name"></span>
+                    <span data-bind="text: $data.rating"></span>
+                    <button data-bind="click: $root.logic.onLogic">
+                        <span>Play!</span>
+                    </button>
+                </li>
+            </ul>        
+        </div>
     </div>
 
     <script type="text/tmpl" id="retroid_ui_template">
@@ -62,9 +73,8 @@
     
     <script type="text/javascript" src="lib/ace/ace.js"></script>
     <script type="text/javascript" src="lib/ace/mode-javascript.js"></script>
-    <script type="text/javascript" src="lib/ace/theme-solarized_dark.js"></script>
-
-    <script type="text/javascript" src="viewmodels/knockout_viewmodel.js"></script>
+    <script type="text/javascript" src="lib/ace/theme-solarized_dark.js"></script>    
+    <script type="text/javascript" src="viewmodels/logiclist_viewmodel.js"></script>
     <script type="text/javascript" src="viewmodels/editor.js"></script>
 
     <script type="text/javascript" src="views/ace_adapter.js"></script>
