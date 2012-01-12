@@ -26,7 +26,7 @@ class window.Retroid.Views.EditorHolderView extends Backbone.View
 
 
 
-  # View -> ViewModel -> Model
+  # Model -> ViewModel -> View
   handelModelToViewBinding: (data)->
     @editorView.syncUI(data)
 
