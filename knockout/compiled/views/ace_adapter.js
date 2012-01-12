@@ -1,7 +1,5 @@
-(function() {
-  var AceEditorAdapter;
 
-  AceEditorAdapter = (function() {
+  window.AceEditorAdapter = (function() {
 
     function AceEditorAdapter(element_id, editorViewModel) {
       this.element_id = element_id;
@@ -30,5 +28,3 @@
     return AceEditorAdapter;
 
   })();
-
-}).call(this);

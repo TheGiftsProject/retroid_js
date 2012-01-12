@@ -1,4 +1,4 @@
-class AceEditorAdapter
+class window.AceEditorAdapter
 	constructor: (@element_id, @editorViewModel)->		
 		@_initAce()
 

@@ -1,4 +1,4 @@
-class ShellViewModel
+class window.ShellViewModel
 	constructor: ->
 		@logic = new LogicListViewModel('#logic_list')
 		@aceEditor = new EditorViewModel()		

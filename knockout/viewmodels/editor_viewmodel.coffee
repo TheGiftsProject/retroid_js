@@ -1,3 +1,3 @@
-class EditorViewModel
+class window.EditorViewModel
 	constructor: ()->
-		@aceText = ko.observable('moo')		
+		@aceText = ko.observable('moo')

@@ -1,4 +1,4 @@
-class LogicListViewModel
+class window.LogicListViewModel
 	constructor: ()->
 		@logicList = ko.observableArray([
 			{

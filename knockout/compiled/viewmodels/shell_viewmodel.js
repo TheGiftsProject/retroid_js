@@ -1,7 +1,5 @@
-(function() {
-  var ShellViewModel;
 
-  ShellViewModel = (function() {
+  window.ShellViewModel = (function() {
 
     function ShellViewModel() {
       this.logic = new LogicListViewModel('#logic_list');
@@ -11,5 +9,3 @@
     return ShellViewModel;
 
   })();
-
-}).call(this);

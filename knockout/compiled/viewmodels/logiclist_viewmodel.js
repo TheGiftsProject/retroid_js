@@ -1,7 +1,5 @@
-(function() {
-  var LogicListViewModel;
 
-  LogicListViewModel = (function() {
+  window.LogicListViewModel = (function() {
 
     function LogicListViewModel() {
       this.logicList = ko.observableArray([
@@ -27,5 +25,3 @@
     return LogicListViewModel;
 
   })();
-
-}).call(this);
