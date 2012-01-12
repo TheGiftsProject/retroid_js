@@ -12,7 +12,7 @@ class window.Retroid.Views.EditorHolderView extends Backbone.View
     @model.bind "change:id", @participantSaved, @
 
 
-    @editorView new Retroid.Views.EditorView(el: @editor, data: @logic.toJSON).render()
+    @editorView new Retroid.Views.EditorView(el: @editor, data: @logic.toJSON)
     @ui =
       editor: @editorView.render()
 
