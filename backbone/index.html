@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <link href="index.css" rel="stylesheet" type="text/css"></link>
+        <script type="text/javascript" src="lib/jquery.js"></script>
+        <script type="text/javascript" src="lib/underscore.js"></script>
+        <script type="text/javascript" src="lib/backbone.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>
+                RetroidJS in Backbone :]
+            <h1>
+        </header>
+        <div id="retroid_backbone">
+            <section id="editor_holder">
+                <span class="function_top">function(leds) {</span>
+                <div class="editor_input_container"></div>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;return leds;</span>
+                <br/>
+                <span>}</span>
+                <button class="run">Run</button>
+                <button class="save" disabled>Save</button>
+            </section>
+            <section id="large_clock"></section>
+            <section id="participants"></section>
+        </div>
+
+        <!-- TEMPLATES/VIEWS -->
+        <div id="templates">
+            <script type="text/underscore" class="editor">
+                <textarea id="code_input" rows="20" cols="50"><%=code%></textarea>
+            </script>
+
+            <script type="text/tmpl" id="retroid_ui_template">
+                <canvas width="300" height="348"></canvas>
+            </script>
+
+            <script type="text/tmpl" id="retroid_small_ui_template">
+                <canvas width="75" height="75"></canvas>
+            </script>
+            <script type="text/tmpl" id="submit_popup">
+                    <input type="text" class="name" placeholder="work name" value="d"></input>
+                    <input type="text" class="email" placeholder="your email" value="d@d.com"></input>
+                    <button class="submit">submit</button>
+                    <button class="cancel">cancel</button>
+            </script>
+            <script type="text/tmpl" id="participant">
+                <div class="left">
+                    <div class="author">author:<%=author%></div>
+                    <div class="name">name:<%=name%></div>
+                    <div class="votes">votes:<%=votes%></div>
+                </div>
+                <div class="right">
+                </div>
+            </script>
+        </div>
+        <!-- JUNK from Gartner -->
+        <script type="text/javascript" src="lib/retroid_ui.js"></script>
+        <!-- APP Stuff -->
+        <script type="text/javascript" src="compiled/app.js"></script>
+        <!-- Models -->
+        <script type="text/javascript" src="compiled/models/logic_model.js"></script>
+        <script type="text/javascript" src="compiled/models/participant_model.js"></script>
+        <script type="text/javascript" src="compiled/models/participants_model.js"></script>
+        <!-- Views -->
+        <script type="text/javascript" src="compiled/views/editor_holder.js"></script>
+        <script type="text/javascript" src="compiled/views/editor.js"></script>
+        <script type="text/javascript" src="compiled/views/large_clock.js"></script>
+        <script type="text/javascript" src="compiled/views/submit.js"></script>
+        <script type="text/javascript" src="compiled/views/participant.js"></script>
+        <script type="text/javascript" src="compiled/views/participants.js"></script>
+        <script type="text/javascript" src="compiled/views/small_clock.js"></script>
+        <script type="text/javascript">
+            // initializer one-liner
+            $(function() {
+                window.RetroidApp = new window.Retroid.AppView();
+            });
+        </script>
+    </body>
+</html>

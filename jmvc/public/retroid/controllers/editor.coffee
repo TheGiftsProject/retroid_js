@@ -12,14 +12,16 @@ $.Controller "Retroid.EditorController",
 		@disableSave()
 
 	disableSave: ->
-		@ui.actions.save.attr('disabled','disabled')
+		@ui.actions.save.attr('disabled','disabled').text("First run to Save")
 	
 	enableSave: ->
-		@ui.actions.save.attr('disabled','')
+		@ui.actions.save.attr('disabled',null).text("Save")
 
 	".actions .save click": ->
-		console.log("SAVE")
+		@element.trigger('save', @ace.getText())
 		
 	".actions .run click": ->
-		console.log("RUN")
-		@ace.setText("Fffffffuuuuuu.....")
+		@element.trigger('run', @ace.getText())
+
+	change: ->
+		@disableSave()

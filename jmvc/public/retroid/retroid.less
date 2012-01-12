@@ -34,6 +34,7 @@ hr {
 .create{
 	overflow: hidden;
 	background: #ddd;
+	position: relative;
 	.editor{
 		float: left;
 		#script_input{
@@ -47,6 +48,46 @@ hr {
 	}
 	.retroid-large{
 		float:left;
+		position: relative;
+		canvas{
+			position: absolute;
+			top: 40px;
+			left: 30px;
+		}
+	}
+	.save-dialog{
+		display: block;
+		width: 330px;
+		height: 150px;
+		position: absolute;
+		left: 150px;
+		top: 110px;
+		background: #ddd;
+		padding: 10px;
+		border-radius: 3px;
+		border: 2px solid #bbb;
+		z-index: 10000;
+		h3{
+			margin-top: 5px;
+			padding-bottom: 10px;
+			border-bottom: 1px solid #bbb;
+		}
+		label{
+			clear: both;
+			float: left;
+			width: 120px;
+		}
+		input{
+			width: 200px;
+			&.error{
+				border: 1px solid red;
+			}
+		}
+		input[type=submit]{
+			float: right;
+			width: auto;
+			margin-top: 20px;
+		}
 	}
 }
 
@@ -58,6 +99,44 @@ hr {
 		background: #eee;
 		&.top{
 			margin-right: 60px;	
+		}
+		li{
+			list-style: none;
+			padding: 5px;
+			clear: both;
+			overflow: hidden;
+			border-bottom: 1px solid #ccc;
+			// margin-bottom: 5px;
+			.animation{
+				width: 60px;
+				height: 60px;
+				padding: 3px;
+				float: left;
+				margin-right: 10px;
+				background: #bbb;
+				overflow: hidden;
+			}
+			.nameauthor{
+				float: left;
+				margin-top: 10px;
+			}
+			.name{
+				font-weight: bold;
+			}
+			.author{
+				font-size: 11px;
+				display: block;
+				margin-top: -7px;
+				margin-left: 10px;
+			}
+			.voter{
+				float: right;
+				text-align: center;
+				a{
+					text-decoration: none;
+					color: #444;
+				}
+			}
 		}
 
 	}

@@ -1,2 +1,2 @@
 // steal model files
-steal("jquery/model").then("./logic.coffee")
+steal("jquery/model",'jquery/model/validations').then("./logic.coffee","./logic_runner.coffee")

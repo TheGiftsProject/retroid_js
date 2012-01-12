@@ -8,6 +8,6 @@ SERVER:
 
     http://sharp-wind-7656.herokuapp.com/logics -- returns all logics { objects: [logics] }
     http://sharp-wind-7656.herokuapp.com/logics/:id -- returns the logic { object: [logic] }
-    http://sharp-wind-7656.herokuapp.com/logics/create -- expect author, name, code params. returns { object: [newly created logic] }
+    http://sharp-wind-7656.herokuapp.com/logics/create -- expect logic[author], logic[name], logic[code] params. returns { object: [newly created logic] }
     http://sharp-wind-7656.herokuapp.com/logics/:id/vote -- expects vote param (which should be 'up' or 'down'). returns { object: [updated logic] }
     http://sharp-wind-7656.herokuapp.com/logics/:id/destroy -- deleted the logic. returns { deleted_object: [logic_id] }

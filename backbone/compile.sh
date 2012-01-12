@@ -1,0 +1,1 @@
+coffee -o compiled -cw .
