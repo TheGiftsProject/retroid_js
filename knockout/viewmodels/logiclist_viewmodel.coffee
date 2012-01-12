@@ -1,5 +1,5 @@
 class window.LogicListViewModel
-	constructor: ()->
+	constructor: (@editorViewModel)->
 		@logicList = ko.observableArray([
 			{
 				name: "moo1"
@@ -17,5 +17,5 @@ class window.LogicListViewModel
 				logic: ""
 			}
 		])
-		@onLogic = (item) ->
-			alert(item)
+		@onRunLogic = (item) =>
+			@editorViewModel.aceText(item.logic)

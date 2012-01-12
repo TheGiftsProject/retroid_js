@@ -18,6 +18,11 @@
             width:800px;
         }
 
+        .logic-item:hover {
+            background-color:#c5c;
+            cursor: pointer;
+        }
+
         button.submit {
             float: right;
         }
@@ -33,18 +38,19 @@
             <span>}</span>
             <button class="submit">Run</button> 
         </div>
-        <h2>Editor text:</h2>
-        <p data-bind="text: aceEditor.aceText"></p>
-        <div class="main_retroid">
+        <!-- Simple data-binding example -->
+        <!--<h2>Editor text:</h2>
+        <p data-bind="text: editor.aceText"></p>
+        <div class="main_retroid">-->
         </div>
         
         <h2>Logic List:</h2>
         <div id="logic_list">
             <ul data-bind="foreach: logic.logicList">
-                <li>
+                <li class="logic-item">
                     <span data-bind="text: $data.name"></span>
                     <span data-bind="text: $data.rating"></span>
-                    <button data-bind="click: $root.logic.onLogic">
+                    <button data-bind="click: $root.logic.onRunLogic">
                         <span>Play!</span>
                     </button>
                 </li>

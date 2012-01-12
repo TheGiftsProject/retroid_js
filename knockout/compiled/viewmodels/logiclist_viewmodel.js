@@ -1,7 +1,9 @@
 
   window.LogicListViewModel = (function() {
 
-    function LogicListViewModel() {
+    function LogicListViewModel(editorViewModel) {
+      var _this = this;
+      this.editorViewModel = editorViewModel;
       this.logicList = ko.observableArray([
         {
           name: "moo1",
@@ -17,8 +19,8 @@
           logic: ""
         }
       ]);
-      this.onLogic = function(item) {
-        return alert(item);
+      this.onRunLogic = function(item) {
+        return _this.editorViewModel.aceText(item.logic);
       };
     }
 

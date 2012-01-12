@@ -12,6 +12,6 @@ class window.AceEditorAdapter
 			@editorViewModel.aceText(@ace.getSession().getValue())
 		)
 		@editorViewModel.aceText.subscribe( (newValue) =>
-			unless @editorViewModel.aceText() is newValue
+			unless @ace.getSession().getValue() is newValue				
 				@ace.getSession().setValue(newValue)
 		)

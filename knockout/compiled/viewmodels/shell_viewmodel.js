@@ -2,8 +2,8 @@
   window.ShellViewModel = (function() {
 
     function ShellViewModel() {
-      this.logic = new LogicListViewModel('#logic_list');
-      this.aceEditor = new EditorViewModel();
+      this.editor = new EditorViewModel();
+      this.logic = new LogicListViewModel(this.editor);
     }
 
     return ShellViewModel;

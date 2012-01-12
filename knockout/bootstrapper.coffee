@@ -8,7 +8,7 @@ class window.Bootstrapper
 		ko.applyBindings(@shellViewModel)
 
 	_initUIAdapters: ->
-		@aceEditorAdapter = new AceEditorAdapter('#script_input', @shellViewModel.aceEditor)
+		@aceEditorAdapter = new AceEditorAdapter('#script_input', @shellViewModel.editor)
 
 $(document).ready( ->		
 	new window.Bootstrapper()

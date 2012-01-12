@@ -12,7 +12,7 @@
     };
 
     Bootstrapper.prototype._initUIAdapters = function() {
-      return this.aceEditorAdapter = new AceEditorAdapter('#script_input', this.shellViewModel.aceEditor);
+      return this.aceEditorAdapter = new AceEditorAdapter('#script_input', this.shellViewModel.editor);
     };
 
     return Bootstrapper;

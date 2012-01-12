@@ -19,7 +19,7 @@
         return _this.editorViewModel.aceText(_this.ace.getSession().getValue());
       });
       return this.editorViewModel.aceText.subscribe(function(newValue) {
-        if (_this.editorViewModel.aceText() !== newValue) {
+        if (_this.ace.getSession().getValue() !== newValue) {
           return _this.ace.getSession().setValue(newValue);
         }
       });
