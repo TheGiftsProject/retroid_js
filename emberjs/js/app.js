@@ -1,29 +1,3 @@
-var fixtureData = [
-    {
-        "code":"foo(A)",
-        "fullName":"John Doe",
-        "username":"johnny",
-        "rating":1,
-        "createAt": "2013"
-    },
-    {
-        "code":"foo(B)",
-        "fullName":"Bob Doe",
-        "username":"bobby",
-        "rating":2,
-        "createAt": "2012"
-    },
-    {
-        "code":"foo(C)",
-        "fullName":"Tom Doe",
-        "username":"tommy",
-        "rating":3,
-        "createAt": "2014"
-    }
-];
-
-
-
 
 var App = Ember.Application.create();
 
@@ -42,7 +16,8 @@ App.entry = Ember.Object.extend(Ember.Comparable,{
 App.entriesCollection = Ember.ArrayController.create({
     // The array of Contact objects that backs the array controller. (we have to use this var for some reason)
     content: [],
-    names: [],
+    contentByRating: [],
+    contentByFullname: [],
 
     loadFixtureData: function(){
         this.crateEntriesFromJson(fixtureData);
@@ -65,22 +40,16 @@ App.entriesCollection = Ember.ArrayController.create({
         var entries = json.map(function(entryData) {
             return App.entry.create(entryData);
         });
-        console.debug('loaded entries');
         this.set('content', entries);
-        this.set('names', this.sortByFullName() );
+        this.set('contentByRating', this.sortByRating());
+        this.set('contentByFullname', this.sortByFullName() );
     },
 
+    // this was originally in Sproutcore and removed from Ember
     sortBy: function(property){
         var content = this.get('content');
-        return content.slice().sort(function(a, b) {
-            var propertyA = a.get(property),
-                propertyB = b.get(property);
-
-            if (!propertyA && propertyB) { return 1; }
-            if (!propertyB && propertyA) { return -1; }
-            if (propertyA < propertyB) { return -1; }
-            if (propertyA > propertyB) { return 1; }
-            return 0;
+        return _.sortBy(content, function(entry){
+            return entry.get(property);
         });
     },
 
@@ -98,9 +67,9 @@ App.entriesCollection = Ember.ArrayController.create({
 
 App.entryRowView = Ember.View.extend({
 
-    contentBinding: 'App.entriesCollection',
-    attributeBindings:['value'],
-    valueBinding: 'content.value',
+//    contentBinding: 'App.entriesCollection',
+//    attributeBindings:['value'],
+//    valueBinding: 'content.value',
 
     showCodeButton: Ember.Button.extend({
         click: function(event) {
@@ -117,6 +86,7 @@ App.entryListView = Ember.CollectionView.extend({
     tagName: 'ul',
     value: null,
     itemViewClass: App.entryRowView,
+    selectedEntry: false,
 
     valueChanged: function(){
         this.$().val( this.get('value') );
