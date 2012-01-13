@@ -64,9 +64,13 @@
             <ul data-bind="foreach: logic.logicList">
                 <li class="logic-item" data-bind="click: $root.logic.onEditLogic">
                     <span>Name: </span>
-                    <span data-bind="text: $data.name"></span><br />
+                    <span data-bind="text: $data.name"></span><br />                
+                    <span>Author: </span>
+                    <span data-bind="text: $data.author"></span><br />
                     <span>Rating: </span>
                     <span data-bind="text: $data.rating"></span>
+                    <span>Created at: </span>
+                    <span data-bind="text: $data.created_at"></span>                    
                 </li>
             </ul>
         </div>
@@ -90,6 +94,7 @@
     <script type="text/javascript" src="lib/retroid_ui.js"></script>
 
     <script type="text/javascript" src="compiled/models/LogicRunner.js"></script>
+    <script type="text/javascript" src="compiled/models/logics.js"></script>
     <script type="text/javascript" src="compiled/viewmodels/logiclist_viewmodel.js"></script>
     <script type="text/javascript" src="compiled/viewmodels/editor_viewmodel.js"></script>
     <script type="text/javascript" src="compiled/viewmodels/retroid_viewmodel.js"></script>
