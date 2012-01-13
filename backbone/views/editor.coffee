@@ -8,13 +8,14 @@ class window.Retroid.Views.EditorView extends Backbone.View
     _.bindAll @, "change"
 
   render: ->
-    $(@el).html(@template(@model.toJSON()))
+    $(@el).html(@template(@data))
     @
   
   getCode: ->
     @model.WrappedCode()
   
   change: ->
-    @model.set(code:@$("textarea").val())
+    data = @$("textarea").val()
+    @trigger("editorView:customEvent", data)
 
   

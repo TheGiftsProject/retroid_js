@@ -10,9 +10,35 @@ class window.Retroid.Views.EditorHolderView extends Backbone.View
     @logic = @model.get("logic")
     @logic.bind 'change:code', @codeChanged, @
     @model.bind "change:id", @participantSaved, @
-    @ui = 
-      editor: new Retroid.Views.EditorView(el: @editor, model: @logic).render()
-  
+
+
+    @editorView new Retroid.Views.EditorView(el: @editor, data: @logic.toJSON)
+    @ui =
+      editor: @editorView.render()
+
+    # Model -> ViewModel -> View
+    # the model got new data, it publishes that event to the ViewModel
+    @bind "change:id", @handelModelToViewBinding, @
+
+    # View -> ViewModel -> Model
+    # the view got new data, it publishes that event to the ViewModel
+    @bind "editorView:customEvent", @handelViewToModelBinding, @
+
+
+
+  # Model -> ViewModel -> View
+  handelModelToViewBinding: (data)->
+    @editorView.syncUI(data)
+
+
+  # View -> ViewModel -> Model
+  handelViewToModelBinding: (data)->
+    @model.syncPersistenceData(data)
+
+
+
+
+
   codeChanged: ->
     @setRunState(@logic.IsValid())
     @logic.Stop()
