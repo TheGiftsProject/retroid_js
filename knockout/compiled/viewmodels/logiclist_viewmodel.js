@@ -7,6 +7,8 @@
       this.onEditLogic = __bind(function(item) {
         return this.editorViewModel.aceText(item.code);
       }, this);
+      this.selectedOrderBy = ko.observable();
+      this.orderByOptions = ko.observableArray([]);
       this.logicsModel = new LogicsModel(this);
     }
     return LogicListViewModel;

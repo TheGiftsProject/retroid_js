@@ -59,8 +59,10 @@
         <div class="main_retroid">
         </div>
         <div class="clear"></div>
-        <h2>Logic List:</h2>
+        <h2>Logic List</h2>
         <div id="logic_list">
+            <span>Order by: </span>
+            <select data-bind="value: logic.selectedOrderBy, options: logic.orderByOptions"></select>
             <ul data-bind="foreach: logic.logicList">
                 <li class="logic-item" data-bind="click: $root.logic.onEditLogic">
                     <span>Name: </span>

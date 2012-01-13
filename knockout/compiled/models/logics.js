@@ -10,9 +10,36 @@
           return this._initLogicsModel(response);
         }, this)
       });
+      this.logicListViewModel.orderByOptions(['Date', 'Rating']);
+      this.logicListViewModel.selectedOrderBy.subscribe(__bind(function(newValue) {
+        return this.orderBy(newValue);
+      }, this));
     }
     LogicsModel.prototype._initLogicsModel = function(response) {
       return this.logicListViewModel.logicList(response.objects);
+    };
+    LogicsModel.prototype.orderBy = function(option) {
+      return this["orderBy" + option]();
+    };
+    LogicsModel.prototype.orderByDate = function() {
+      return this.logicListViewModel.logicList.sort(__bind(function(left, right) {
+        if (left.created_at > right.created_at) {
+          return 1;
+        }
+        if (left.created_at < right.created_at) {
+          return 0;
+        }
+      }, this));
+    };
+    LogicsModel.prototype.orderByRating = function() {
+      return this.logicListViewModel.logicList.sort(__bind(function(left, right) {
+        if (left.rating > right.rating) {
+          return 0;
+        }
+        if (left.rating < right.rating) {
+          return 1;
+        }
+      }, this));
     };
     return LogicsModel;
   })();
