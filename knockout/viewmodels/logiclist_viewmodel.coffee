@@ -30,13 +30,13 @@ class window.LogicListViewModel
 			{
 				name: "moo2"
 				rating: 4
-				logic: "var modi"
+				logic: "asfvar modi"
 			}
 			{
 				name: "moo3"
 				rating: 3
-				logic: ""
+				logic: "asgsag"
 			}
 		])
-		@onRunLogic = (item) =>
+		@onEditLogic = (item) =>
 			@editorViewModel.aceText(item.logic)

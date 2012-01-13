@@ -22,6 +22,7 @@
 
         .main_retroid {
             width: 300px;
+            margin-left:50px;
             float:left;
         }
 
@@ -47,7 +48,7 @@
             <span>&nbsp;&nbsp;&nbsp;&nbsp;return leds;</span>
             <br/>
             <span>}</span>
-            <button class="submit">Run</button>
+            <button class="submit" data-bind="click: retroid.onRunLogic, enable: retroid.canRunLogic">Run</button>
         </div>
         <!-- Simple data-binding example -->
         <!--<h2>Editor text:</h2>
@@ -58,7 +59,7 @@
         <h2>Logic List:</h2>
         <div id="logic_list">
             <ul data-bind="foreach: logic.logicList">
-                <li class="logic-item" data-bind="click: $root.logic.onRunLogic">
+                <li class="logic-item" data-bind="click: $root.logic.onEditLogic">
                     <span>Name: </span>
                     <span data-bind="text: $data.name"></span><br />
                     <span>Rating: </span>
@@ -74,10 +75,6 @@
 
     <script type="text/tmpl" id="retroid_small_ui_template">
         <canvas width="75" height="75"></canvas>
-    </script>
-
-    <script type="text/tmpl" id="logic_list_item_template">
-        <li class="item"></li>
     </script>
 
     <!-- JAVASCRIPTS -->    

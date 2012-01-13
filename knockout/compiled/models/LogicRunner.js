@@ -6,7 +6,7 @@
       this.code = code != null ? code : '';
     }
     LogicRunner.prototype.Run = function() {
-      if (this.CodeIsValid()) {
+      if (this.CodeIsValid(this.code)) {
         this.Stop();
         return this.interval = window.setInterval((__bind(function() {
           var leds, toEval;
@@ -21,9 +21,9 @@
         return window.clearInterval(this.interval);
       }
     };
-    LogicRunner.prototype.CodeIsValid = function() {
+    LogicRunner.prototype.CodeIsValid = function(code) {
       var result, toEval;
-      toEval = "(function (leds){" + this.code + ";return leds;})([" + (this.viewModel.leds()) + "])";
+      toEval = "(function (leds){" + code + ";return leds;})([" + (this.viewModel.leds()) + "])";
       result = true;
       try {
         eval(toEval);

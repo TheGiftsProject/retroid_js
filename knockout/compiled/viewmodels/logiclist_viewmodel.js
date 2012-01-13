@@ -11,14 +11,14 @@
         }, {
           name: "moo2",
           rating: 4,
-          logic: "var modi"
+          logic: "asfvar modi"
         }, {
           name: "moo3",
           rating: 3,
-          logic: ""
+          logic: "asgsag"
         }
       ]);
-      this.onRunLogic = __bind(function(item) {
+      this.onEditLogic = __bind(function(item) {
         return this.editorViewModel.aceText(item.logic);
       }, this);
     }

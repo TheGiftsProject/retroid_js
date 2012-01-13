@@ -6,9 +6,13 @@
       this.logicRunner = new LogicRunner(this);
       this.leds = ko.observableArray([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
       this.editorViewModel.aceText.subscribe(__bind(function(newValue) {
-        this.logicRunner.code = newValue;
-        return this.logicRunner.Run();
+        return this.canRunLogic(this.logicRunner.CodeIsValid(this.editorViewModel.aceText()));
       }, this));
+      this.onRunLogic = __bind(function() {
+        this.logicRunner.code = this.editorViewModel.aceText();
+        return this.logicRunner.Run();
+      }, this);
+      this.canRunLogic = ko.observable(true);
     }
     return RetroidViewModel;
   })();

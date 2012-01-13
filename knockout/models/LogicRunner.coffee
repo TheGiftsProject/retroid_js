@@ -2,7 +2,7 @@ class window.LogicRunner
 	constructor: (@viewModel, @code = '')->
 
 	Run: ->
-		if @CodeIsValid()
+		if @CodeIsValid(@code)
 			@Stop()
 			@interval = window.setInterval (=>
 				toEval = "(function (leds){#{@code};return leds;})([#{@viewModel.leds()}])"
@@ -13,8 +13,8 @@ class window.LogicRunner
 	Stop: ->
 		window.clearInterval @interval if @interval
 	
-	CodeIsValid: ->
-		toEval = "(function (leds){#{@code};return leds;})([#{@viewModel.leds()}])"
+	CodeIsValid: (code)->
+		toEval = "(function (leds){#{code};return leds;})([#{@viewModel.leds()}])"
 		result = true
 		try
 			eval(toEval)
