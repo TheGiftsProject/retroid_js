@@ -5,9 +5,9 @@
       this.viewModel = viewModel;
       this.code = code != null ? code : '';
     }
-    LogicRunner.prototype.Run = function() {
-      if (this.CodeIsValid(this.code)) {
-        this.Stop();
+    LogicRunner.prototype.run = function() {
+      if (this.codeIsValid(this.code)) {
+        this.stop();
         return this.interval = window.setInterval((__bind(function() {
           var leds, toEval;
           toEval = "(function (leds){" + this.code + ";return leds;})([" + (this.viewModel.leds()) + "])";
@@ -16,12 +16,12 @@
         }, this)), 100);
       }
     };
-    LogicRunner.prototype.Stop = function() {
+    LogicRunner.prototype.stop = function() {
       if (this.interval) {
         return window.clearInterval(this.interval);
       }
     };
-    LogicRunner.prototype.CodeIsValid = function(code) {
+    LogicRunner.prototype.codeIsValid = function(code) {
       var result, toEval;
       toEval = "(function (leds){" + code + ";return leds;})([" + (this.viewModel.leds()) + "])";
       result = true;

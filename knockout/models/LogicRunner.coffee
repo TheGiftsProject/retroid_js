@@ -1,19 +1,19 @@
 class window.LogicRunner
 	constructor: (@viewModel, @code = '')->
 
-	Run: ->
-		if @CodeIsValid(@code)
-			@Stop()
+	run: ->
+		if @codeIsValid(@code)
+			@stop()
 			@interval = window.setInterval (=>
 				toEval = "(function (leds){#{@code};return leds;})([#{@viewModel.leds()}])"
 				leds = eval(toEval)
 				@viewModel.leds(leds)
 			), 100
 
-	Stop: ->
+	stop: ->
 		window.clearInterval @interval if @interval
 	
-	CodeIsValid: (code)->
+	codeIsValid: (code)->
 		toEval = "(function (leds){#{code};return leds;})([#{@viewModel.leds()}])"
 		result = true
 		try

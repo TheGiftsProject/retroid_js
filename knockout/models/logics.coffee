@@ -1,18 +1,20 @@
 class window.LogicsModel
 	constructor: (@logicListViewModel)->
-		$.ajax(
-			url: "http://sharp-wind-7656.herokuapp.com/logics" 
-			dataType: 'jsonp' 
-			success: (response) => @_initLogicsModel(response)
-		)
+		@loadLogics()
 
 		@logicListViewModel.orderByOptions(['Date','Rating'])
-
 		@logicListViewModel.selectedOrderBy.subscribe( (newValue) =>
 			@orderBy(newValue)
 		)
 
-	_initLogicsModel: (response)->
+	loadLogics: ->
+		$.ajax(
+			url: "http://sharp-wind-7656.herokuapp.com/logics"
+			dataType: 'jsonp' 
+			success: (response) => @_updateLogicsModel(response)
+		)	
+
+	_updateLogicsModel: (response)->
 		@logicListViewModel.logicList(response.objects)
 
 	orderBy: (option)->

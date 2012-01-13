@@ -3,19 +3,22 @@
   window.LogicsModel = (function() {
     function LogicsModel(logicListViewModel) {
       this.logicListViewModel = logicListViewModel;
-      $.ajax({
-        url: "http://sharp-wind-7656.herokuapp.com/logics",
-        dataType: 'jsonp',
-        success: __bind(function(response) {
-          return this._initLogicsModel(response);
-        }, this)
-      });
+      this.loadLogics();
       this.logicListViewModel.orderByOptions(['Date', 'Rating']);
       this.logicListViewModel.selectedOrderBy.subscribe(__bind(function(newValue) {
         return this.orderBy(newValue);
       }, this));
     }
-    LogicsModel.prototype._initLogicsModel = function(response) {
+    LogicsModel.prototype.loadLogics = function() {
+      return $.ajax({
+        url: "http://sharp-wind-7656.herokuapp.com/logics",
+        dataType: 'jsonp',
+        success: __bind(function(response) {
+          return this._updateLogicsModel(response);
+        }, this)
+      });
+    };
+    LogicsModel.prototype._updateLogicsModel = function(response) {
       return this.logicListViewModel.logicList(response.objects);
     };
     LogicsModel.prototype.orderBy = function(option) {
