@@ -11,6 +11,6 @@ class window.Bootstrapper
 		@aceEditorAdapter = new AceEditorAdapter('#script_input', @shellViewModel.editor)
 		@retroidAdapter = new RetroidAdapter($('.main_retroid'), @shellViewModel.retroid)
 
-$(document).ready( ->		
-	new window.Bootstrapper()
+$(document).ready( ->
+	window.bootstrapper = new window.Bootstrapper()	
 )	

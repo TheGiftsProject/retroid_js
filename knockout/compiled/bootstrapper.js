@@ -15,6 +15,6 @@
     return Bootstrapper;
   })();
   $(document).ready(function() {
-    return new window.Bootstrapper();
+    return window.bootstrapper = new window.Bootstrapper();
   });
 }).call(this);

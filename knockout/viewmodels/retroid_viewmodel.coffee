@@ -1,6 +1,11 @@
 class window.RetroidViewModel
-	constructor: ()->		
-		@leds = ko.observableArray(new Array(12))
+	constructor: (@editorViewModel)->
+		@logicRunner = new LogicRunner(@)
+		@leds = ko.observableArray([0,0,0,0,0,0,0,0,0,0,0,0])
+		@editorViewModel.aceText.subscribe( (newValue) =>
+			@logicRunner.code = newValue
+			@logicRunner.Run()
+		)
 	
 
 
