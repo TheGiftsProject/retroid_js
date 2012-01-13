@@ -42,13 +42,16 @@
 </head>
 <body>
     <div class="page_container">
+        <h1>Retroid on KnockoutJS Ole!!</h1>
         <div class="editor">
             <span>function(leds) {</span>
             <div id="script_input"></div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;return leds;</span>
             <br/>
             <span>}</span>
-            <button class="submit" data-bind="click: retroid.onRunLogic, enable: retroid.canRunLogic">Run</button>
+            <button class="submit" data-bind="click: retroid.onRunLogic, enable: retroid.canRunLogic">
+            <span>Run code</span>
+            </button>
         </div>
         <!-- Simple data-binding example -->
         <!--<h2>Editor text:</h2>
@@ -65,7 +68,7 @@
                     <span>Rating: </span>
                     <span data-bind="text: $data.rating"></span>
                 </li>
-            </ul>        
+            </ul>
         </div>
     </div>
 
@@ -80,6 +83,7 @@
     <!-- JAVASCRIPTS -->    
     <script type="text/javascript" src="lib/underscore-min.js"></script>
     <script type="text/javascript" src="lib/knockout-2.0.0.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/SteveSanderson/knockout.mapping/master/build/output/knockout.mapping-latest.debug.js"></script>
     <script type="text/javascript" src="lib/ace/ace.js"></script>
     <script type="text/javascript" src="lib/ace/mode-javascript.js"></script>
     <script type="text/javascript" src="lib/ace/theme-solarized_dark.js"></script>
