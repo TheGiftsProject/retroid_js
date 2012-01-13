@@ -1,26 +1,37 @@
 <html>
 <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="http://cloud.github.com/downloads/SteveSanderson/knockout/jquery.tmpl.js"></script>
     <style type="text/css">
         body {
         }
 
         #script_input {
-            position: relative;
-            width: 800px;
+            position:relative;
+            width: 735px;
             height: 400px;
+        }
+
+        .editor {
+            float:left;
         }
 
         .page_container {
             overflow: hidden;
         }
 
-        .editor, .main_retroid {
-            width:800px;
+        .main_retroid {
+            width: 300px;
+            float:left;
         }
 
         .logic-item:hover {
             background-color:#c5c;
             cursor: pointer;
+        }
+
+        .clear {
+            clear:both;
         }
 
         button.submit {
@@ -36,14 +47,14 @@
             <span>&nbsp;&nbsp;&nbsp;&nbsp;return leds;</span>
             <br/>
             <span>}</span>
-            <button class="submit">Run</button> 
+            <button class="submit">Run</button>
         </div>
         <!-- Simple data-binding example -->
         <!--<h2>Editor text:</h2>
-        <p data-bind="text: editor.aceText"></p>
-        <div class="main_retroid">-->
+        <p data-bind="text: editor.aceText"></p>-->
+        <div class="main_retroid">
         </div>
-        
+        <div class="clear"></div>
         <h2>Logic List:</h2>
         <div id="logic_list">
             <ul data-bind="foreach: logic.logicList">
@@ -70,18 +81,20 @@
         <li class="item"></li>
     </script>
 
-    <!-- JAVASCRIPTS -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <!-- JAVASCRIPTS -->    
     <script type="text/javascript" src="lib/underscore-min.js"></script>
     <script type="text/javascript" src="lib/knockout-2.0.0.js"></script>    
     <script type="text/javascript" src="lib/ace/ace.js"></script>
     <script type="text/javascript" src="lib/ace/mode-javascript.js"></script>
     <script type="text/javascript" src="lib/ace/theme-solarized_dark.js"></script>        
+    <script type="text/javascript" src="lib/retroid_ui.js"></script>
 
     <script type="text/javascript" src="compiled/viewmodels/logiclist_viewmodel.js"></script>
     <script type="text/javascript" src="compiled/viewmodels/editor_viewmodel.js"></script>
+    <script type="text/javascript" src="compiled/viewmodels/retroid_viewmodel.js"></script>
     <script type="text/javascript" src="compiled/viewmodels/shell_viewmodel.js"></script>    
     <script type="text/javascript" src="compiled/views/ace_adapter.js"></script>
+    <script type="text/javascript" src="compiled/views/retroid_adapter.js"></script>
     <script type="text/javascript" src="compiled/bootstrapper.js"></script>
 </body>
 </html>

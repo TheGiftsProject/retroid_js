@@ -1,8 +1,7 @@
-
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   window.LogicListViewModel = (function() {
-
     function LogicListViewModel(editorViewModel) {
-      var _this = this;
       this.editorViewModel = editorViewModel;
       this.logicList = ko.observableArray([
         {
@@ -19,11 +18,10 @@
           logic: ""
         }
       ]);
-      this.onRunLogic = function(item) {
-        return _this.editorViewModel.aceText(item.logic);
-      };
+      this.onRunLogic = __bind(function(item) {
+        return this.editorViewModel.aceText(item.logic);
+      }, this);
     }
-
     return LogicListViewModel;
-
   })();
+}).call(this);

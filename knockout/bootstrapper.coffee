@@ -9,6 +9,7 @@ class window.Bootstrapper
 
 	_initUIAdapters: ->
 		@aceEditorAdapter = new AceEditorAdapter('#script_input', @shellViewModel.editor)
+		@retroidAdapter = new RetroidAdapter($('.main_retroid'), @shellViewModel.retroid)
 
 $(document).ready( ->		
 	new window.Bootstrapper()
