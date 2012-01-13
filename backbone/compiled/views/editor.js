@@ -16,10 +16,6 @@
       "keyup": "change"
     };
 
-    EditorView.prototype.initialize = function() {
-      return _.bindAll(this, "change");
-    };
-
     EditorView.prototype.render = function() {
       $(this.el).html(this.template(this.model.toJSON()));
       return this;

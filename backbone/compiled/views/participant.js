@@ -26,7 +26,7 @@
     };
 
     ParticipantView.prototype.initialize = function() {
-      return this.logic = this.model.get("logic");
+      return this.logic = this.model.logic;
     };
 
     ParticipantView.prototype.render = function() {

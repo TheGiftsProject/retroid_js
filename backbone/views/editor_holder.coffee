@@ -7,11 +7,11 @@ class window.Retroid.Views.EditorHolderView extends Backbone.View
       "click .save" : "save"
 
   initialize:  ->
-    @logic = @model.get("logic")
-    @logic.bind 'change:code', @codeChanged, @
+    @logic = @model.logic
+    @model.bind 'change:code', @codeChanged, @
     @model.bind "change:id", @participantSaved, @
     @ui = 
-      editor: new Retroid.Views.EditorView(el: @editor, model: @logic).render()
+      editor: new Retroid.Views.EditorView(el: @editor, model: @model).render()
   
   codeChanged: ->
     @setRunState(@logic.IsValid())

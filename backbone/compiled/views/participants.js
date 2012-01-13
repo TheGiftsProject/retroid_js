@@ -10,8 +10,6 @@
       ParticipantsView.__super__.constructor.apply(this, arguments);
     }
 
-    ParticipantsView.prototype.el = $("#participants");
-
     ParticipantsView.prototype.initialize = function() {
       return this.collection.bind("reset", this.fetched, this);
     };
@@ -23,7 +21,7 @@
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         participant = _ref[_i];
-        if (!participant.get("logic").IsValid()) continue;
+        if (!participant.logic.IsValid()) continue;
         participantView = new Retroid.Views.ParticipantView({
           model: participant
         });

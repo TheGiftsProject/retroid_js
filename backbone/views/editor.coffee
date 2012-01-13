@@ -4,9 +4,6 @@ class window.Retroid.Views.EditorView extends Backbone.View
   events:
     "keyup" : "change"
 
-  initialize: ->
-    _.bindAll @, "change"
-
   render: ->
     $(@el).html(@template(@model.toJSON()))
     @

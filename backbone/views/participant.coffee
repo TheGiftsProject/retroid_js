@@ -7,7 +7,7 @@ class Retroid.Views.ParticipantView extends Backbone.View
     "mouseout": "stop"
 
   initialize: ->
-    @logic = @model.get("logic")
+    @logic = @model.logic
   
   render: ->
     $(@el).html(@template(@model.toJSON()))

@@ -4,36 +4,36 @@ class Retroid.Models.Participant extends Backbone.Model
     name: ""
     dateAdded: ""
     votes: 0
+    code: ""
   
   url: "http://sharp-wind-7656.herokuapp.com/logics"
   
   initialize: ->
-    logic = new Retroid.Models.Logic()
-    @set(logic: logic)
+    @bind "change:code", -> @logic.set(code:@get("code")), @
+    @logic = new Retroid.Models.Logic(code:@get("code"))
 
   GetCode: ->
-    @get("logic").WrappedCode()
+    @logic.WrappedCode()
 
   sync: (method, model, options) ->
-    data = @formatForCreate()
     $.ajax({
       type: 'POST',
       url: "#{@url}/create",
-      data: data,
+      data: @formatForCreate(),
       dataType: 'jsonp'
-    })
+    }) if method=="create"
 
   # DAMN you GARTNER!!!
   formatForCreate: ->
     logic:
       author: @get("author")
       name: @get("name")
-      code: @get("logic").get("code")
+      code: @get("code")
     
   parse: (response) ->
     author: response.author
     name: response.name
-    logic: new Retroid.Models.Logic(code:response.code)
+    code: response.code
     dateAdded: response.created_at
     id: response.id
     votes: response.rating

@@ -20,13 +20,13 @@
     };
 
     EditorHolderView.prototype.initialize = function() {
-      this.logic = this.model.get("logic");
-      this.logic.bind('change:code', this.codeChanged, this);
+      this.logic = this.model.logic;
+      this.model.bind('change:code', this.codeChanged, this);
       this.model.bind("change:id", this.participantSaved, this);
       return this.ui = {
         editor: new Retroid.Views.EditorView({
           el: this.editor,
-          model: this.logic
+          model: this.model
         }).render()
       };
     };

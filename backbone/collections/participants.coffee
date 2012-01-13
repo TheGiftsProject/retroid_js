@@ -6,5 +6,3 @@ class Retroid.Models.Participants extends Backbone.Collection
     for object in response.objects
       models.push(new Retroid.Models.Participant().parse(object))
     models
-  comperator: (participant) ->
-    participant.get("votes")
