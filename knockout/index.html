@@ -49,7 +49,7 @@
             <span>&nbsp;&nbsp;&nbsp;&nbsp;return leds;</span>
             <br/>
             <span>}</span>
-            <button class="submit" data-bind="click: retroid.onRunLogic, enable: retroid.canRunLogic">
+            <button class="submit" data-bind="click: retroid.onRunLogic, enable: retroid.runEnabled">
             <span>Run code</span>
             </button>
         </div>
@@ -66,13 +66,13 @@
             <ul data-bind="foreach: logic.logicList">
                 <li class="logic-item" data-bind="click: $root.logic.onEditLogic">
                     <span>Name: </span>
-                    <span data-bind="text: $data.name"></span><br />                
+                    <span data-bind="text: $data.name"></span><br />
                     <span>Author: </span>
                     <span data-bind="text: $data.author"></span><br />
                     <span>Rating: </span>
-                    <span data-bind="text: $data.rating"></span>
+                    <span data-bind="text: $data.rating"></span><br />
                     <span>Created at: </span>
-                    <span data-bind="text: $data.created_at"></span>                    
+                    <span data-bind="text: $data.created_at"></span>
                 </li>
             </ul>
         </div>
