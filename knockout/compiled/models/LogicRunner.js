@@ -9,10 +9,9 @@
       if (this.CodeIsValid()) {
         this.Stop();
         return this.interval = window.setInterval((__bind(function() {
-          debugger;          var leds, toEval;
+          var leds, toEval;
           toEval = "(function (leds){" + this.code + ";return leds;})([" + (this.viewModel.leds()) + "])";
           leds = eval(toEval);
-          debugger;
           return this.viewModel.leds(leds);
         }, this)), 100);
       }

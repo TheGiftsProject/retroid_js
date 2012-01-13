@@ -5,10 +5,8 @@ class window.LogicRunner
 		if @CodeIsValid()
 			@Stop()
 			@interval = window.setInterval (=>
-				debugger
 				toEval = "(function (leds){#{@code};return leds;})([#{@viewModel.leds()}])"
 				leds = eval(toEval)
-				debugger
 				@viewModel.leds(leds)
 			), 100
 

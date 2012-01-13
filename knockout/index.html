@@ -26,7 +26,7 @@
         }
 
         .logic-item:hover {
-            background-color:#c5c;
+            background-color:#333;
             cursor: pointer;
         }
 
@@ -58,12 +58,11 @@
         <h2>Logic List:</h2>
         <div id="logic_list">
             <ul data-bind="foreach: logic.logicList">
-                <li class="logic-item">
-                    <span data-bind="text: $data.name"></span>
+                <li class="logic-item" data-bind="click: $root.logic.onRunLogic">
+                    <span>Name: </span>
+                    <span data-bind="text: $data.name"></span><br />
+                    <span>Rating: </span>
                     <span data-bind="text: $data.rating"></span>
-                    <button data-bind="click: $root.logic.onRunLogic">
-                        <span>Play!</span>
-                    </button>
                 </li>
             </ul>        
         </div>
