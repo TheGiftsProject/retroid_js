@@ -14,7 +14,11 @@
   Backbone.oldSync = Backbone.sync;
 
   Backbone.sync = function(method, model, options) {
-    if (method === "create") model.url = model.url + "/create?callback=?";
+    options.contentType = "application/json; charset=utf-8";
+    if (method === "create") {
+      model.url = model.url + "/create?callback=?";
+      params.data = model.toJSON();
+    }
     return Backbone.oldSync(method, model, options);
   };
 
@@ -35,6 +39,7 @@
       this._initEditorHolder(this.participant);
       this._initLargeClock(this.participant);
       this._initParticipantsView();
+      this.participants.bind("reset", this._fetchedParticipants, this);
       setInterval((function() {
         return _this.participants.fetch();
       }), 1000);
@@ -43,7 +48,17 @@
 
     AppView.prototype._initModels = function() {
       this.participant = new Retroid.Models.Participant();
-      return this.participants = new Retroid.Models.Participants();
+      this.participants = new Retroid.Models.Participants();
+      this.participantsByVotes = new Retroid.Models.Participants({
+        comparator: function(participant) {
+          return participant.get("votes");
+        }
+      });
+      return this.participantsByLatest = new Retroid.Models.Participants({
+        comparator: function(participant) {
+          return participant.get("dateAdded");
+        }
+      });
     };
 
     AppView.prototype._initEditorHolder = function(participant) {
@@ -54,13 +69,23 @@
 
     AppView.prototype._initLargeClock = function(participant) {
       return this.ui.largeClock = new Retroid.Views.LargeClockView({
-        model: participant.get("logic")
+        model: participant.logic
       });
     };
 
+    AppView.prototype._fetchedParticipants = function() {
+      this.participantsByVotes.reset(this.participants.models);
+      return this.participantsByLatest.reset(this.participants.models);
+    };
+
     AppView.prototype._initParticipantsView = function() {
-      return this.ui.participants = new Retroid.Views.ParticipantsView({
-        collection: this.participants
+      this.ui.participantsByVotes = new Retroid.Views.ParticipantsView({
+        el: $("#participants.byVotes"),
+        collection: this.participantsByVotes
+      });
+      return this.ui.participantsByLatest = new Retroid.Views.ParticipantsView({
+        el: $("#participants.byLatest"),
+        collection: this.participantsByLatest
       });
     };
 

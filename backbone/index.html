@@ -22,7 +22,8 @@
                 <button class="save" disabled>Save</button>
             </section>
             <section id="large_clock"></section>
-            <section id="participants"></section>
+            <section id="participants" class="byVotes" style="float:left"></section>
+            <section id="participants" class="byLatest" style="float:right"></section>
         </div>
 
         <!-- TEMPLATES/VIEWS -->
@@ -62,6 +63,8 @@
         <script type="text/javascript" src="compiled/models/logic_model.js"></script>
         <script type="text/javascript" src="compiled/models/participant_model.js"></script>
         <script type="text/javascript" src="compiled/models/participants_model.js"></script>
+        <!-- Collections -->
+        <script type="text/javascript" src="compiled/collections/participants.js"></script>
         <!-- Views -->
         <script type="text/javascript" src="compiled/views/editor_holder.js"></script>
         <script type="text/javascript" src="compiled/views/editor.js"></script>
