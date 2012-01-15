@@ -54,8 +54,8 @@
     LogicListViewModel.prototype.orderByRating = function() {
       var _this = this;
       return this.logicList.sort(function(left, right) {
-        if (left.rating > right.rating) return -1;
-        if (left.rating < right.rating) return 1;
+        if (left.rating() > right.rating()) return -1;
+        if (left.rating() < right.rating()) return 1;
       });
     };
 

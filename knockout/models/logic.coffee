@@ -1,5 +1,6 @@
 class window.LogicModel
-	constructor: (id:@id,author:@author,code:@code,created_at:@created_at,updated_at:@updated_at,name:@name,rating:@rating)->		
+	constructor: (id:@id,author:@author,code:@code,created_at:@created_at,updated_at:@updated_at,name:@name,rating:@rating) ->
+		@rating = ko.observable(@rating)		
 
 	@logics_url: "http://sharp-wind-7656.herokuapp.com/logics"
 	create: ->
@@ -22,11 +23,9 @@ class window.LogicModel
 		deferred = $.Deferred()
 		$.ajax({url: "#{LogicModel.logics_url}/#{@id}/destroy", dataType: 'jsonp'})
 			.done( (response) =>
-				debugger
 				deferred.resolve(response.object)
 			)
 			.fail( (xhr,status,error) =>
-				debugger
 				deferred.rejectWith(@, [xhr,status,error])
 			)
 
@@ -36,6 +35,7 @@ class window.LogicModel
 		deferred = $.Deferred()
 		$.ajax({url: "#{LogicModel.logics_url}/#{@id}/vote", data: { vote: type }, dataType: 'jsonp'})
 			.done( (response) => 
+				@rating(response.object.rating)
 				deferred.resolve(response.object)
 			)
 			.fail( (xhr,status,error) =>

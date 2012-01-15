@@ -3,6 +3,7 @@
 
     function LogicModel(_arg) {
       this.id = _arg.id, this.author = _arg.author, this.code = _arg.code, this.created_at = _arg.created_at, this.updated_at = _arg.updated_at, this.name = _arg.name, this.rating = _arg.rating;
+      this.rating = ko.observable(this.rating);
     }
 
     LogicModel.logics_url = "http://sharp-wind-7656.herokuapp.com/logics";
@@ -39,9 +40,9 @@
         url: "" + LogicModel.logics_url + "/" + this.id + "/destroy",
         dataType: 'jsonp'
       }).done(function(response) {
-        debugger;        return deferred.resolve(response.object);
+        return deferred.resolve(response.object);
       }).fail(function(xhr, status, error) {
-        debugger;        return deferred.rejectWith(_this, [xhr, status, error]);
+        return deferred.rejectWith(_this, [xhr, status, error]);
       });
       return deferred.promise();
     };
@@ -57,6 +58,7 @@
         },
         dataType: 'jsonp'
       }).done(function(response) {
+        _this.rating(response.object.rating);
         return deferred.resolve(response.object);
       }).fail(function(xhr, status, error) {
         return deferred.rejectWith(_this, [xhr, status, error]);

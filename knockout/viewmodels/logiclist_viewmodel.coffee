@@ -41,6 +41,6 @@ class window.LogicListViewModel
 
 	orderByRating: ->
 		@logicList.sort( (left, right)=>
-			return -1 if left.rating > right.rating
-			return 1 if left.rating < right.rating
+			return -1 if left.rating() > right.rating()
+			return 1 if left.rating() < right.rating()
 		)
