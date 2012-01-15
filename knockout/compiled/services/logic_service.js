@@ -2,7 +2,7 @@
   window.LogicService = (function() {
 
     function LogicService() {
-      this.all_logics_url = "http://sharp-wind-7656.herokuapp.com/logics";
+      this.logics_url = "http://sharp-wind-7656.herokuapp.com/logics";
     }
 
     LogicService.prototype.getAllLogics = function() {
@@ -10,7 +10,7 @@
       var _this = this;
       deferred = $.deferred;
       $.ajax({
-        url: this.all_logics_url,
+        url: this.logics_url,
         dataType: 'jsonp'
       }).done(response)(function() {
         return _this._buildLogicModels(response.objects);
@@ -25,7 +25,7 @@
       result = [];
       for (_i = 0, _len = collection.length; _i < _len; _i++) {
         item = collection[_i];
-        logicModel = new LogicModel({
+        logicModel = new window.LogicModel({
           id: item.id,
           author: item.author,
           code: item.code,

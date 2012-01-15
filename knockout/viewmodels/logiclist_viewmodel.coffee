@@ -13,9 +13,9 @@ class window.LogicListViewModel
 			@orderBy(newValue)
 		)
 
-	loadLogicList: ->
-		logicService = new LogicService()
-		logicService.getAllLogics().done( (collection) =>
+	loadLogicList: ->		
+		window.LogicModel.all().done( (collection) =>
+			debugger
 			@logicList(collection)
 		)
 	
