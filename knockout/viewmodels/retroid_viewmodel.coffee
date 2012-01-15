@@ -10,4 +10,4 @@ class window.RetroidViewModel
 			@logicRunner.code = @editorViewModel.aceText()
 			@logicRunner.run()
 
-		@runEnabled = ko.observable(true)
+		@runEnabled = ko.observable(true)	

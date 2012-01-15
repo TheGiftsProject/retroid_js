@@ -1,16 +1,13 @@
-
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   window.LogicModel = (function() {
-
     function LogicModel(_arg) {
       this.id = _arg.id, this.author = _arg.author, this.code = _arg.code, this.created_at = _arg.created_at, this.updated_at = _arg.updated_at, this.name = _arg.name, this.rating = _arg.rating;
       this.rating = ko.observable(this.rating);
     }
-
     LogicModel.logics_url = "http://sharp-wind-7656.herokuapp.com/logics";
-
     LogicModel.prototype.create = function() {
       var deferred;
-      var _this = this;
       if (this.id) {
         throw 'Cannot create a logic that already exists in the database';
       }
@@ -23,33 +20,29 @@
           "logic[code]": this.code
         },
         dataType: 'jsonp'
-      }).done(function(response) {
-        _this.id = response.object.id;
+      }).done(__bind(function(response) {
+        this.id = response.object.id;
         return deferred.resolve(response.object);
-      }).fail(function(xhr, status, error) {
-        return deferred.rejectWith(_this, [xhr, status, error]);
-      });
+      }, this)).fail(__bind(function(xhr, status, error) {
+        return deferred.rejectWith(this, [xhr, status, error]);
+      }, this));
       return deferred.promise();
     };
-
     LogicModel.prototype.destroy = function() {
       var deferred;
-      var _this = this;
       deferred = $.Deferred();
       $.ajax({
         url: "" + LogicModel.logics_url + "/" + this.id + "/destroy",
         dataType: 'jsonp'
-      }).done(function(response) {
+      }).done(__bind(function(response) {
         return deferred.resolve(response.object);
-      }).fail(function(xhr, status, error) {
-        return deferred.rejectWith(_this, [xhr, status, error]);
-      });
+      }, this)).fail(__bind(function(xhr, status, error) {
+        return deferred.rejectWith(this, [xhr, status, error]);
+      }, this));
       return deferred.promise();
     };
-
     LogicModel.prototype.vote = function(type) {
       var deferred;
-      var _this = this;
       deferred = $.Deferred();
       $.ajax({
         url: "" + LogicModel.logics_url + "/" + this.id + "/vote",
@@ -57,29 +50,26 @@
           vote: type
         },
         dataType: 'jsonp'
-      }).done(function(response) {
-        _this.rating(response.object.rating);
+      }).done(__bind(function(response) {
+        this.rating(response.object.rating);
         return deferred.resolve(response.object);
-      }).fail(function(xhr, status, error) {
-        return deferred.rejectWith(_this, [xhr, status, error]);
-      });
+      }, this)).fail(__bind(function(xhr, status, error) {
+        return deferred.rejectWith(this, [xhr, status, error]);
+      }, this));
       return deferred.promise();
     };
-
     LogicModel.all = function() {
       var deferred;
-      var _this = this;
       deferred = $.Deferred();
       $.ajax(this.logics_url, {
         dataType: 'jsonp'
-      }).done(function(response) {
-        return deferred.resolve(_this._buildLogicModels(response.objects));
-      }).fail(function(xhr, status, error) {
-        return deferred.rejectWith(_this, [xhr, status, error]);
-      });
+      }).done(__bind(function(response) {
+        return deferred.resolve(this._buildLogicModels(response.objects));
+      }, this)).fail(__bind(function(xhr, status, error) {
+        return deferred.rejectWith(this, [xhr, status, error]);
+      }, this));
       return deferred.promise();
     };
-
     LogicModel._buildLogicModels = function(collection) {
       var item, logicModel, result, _i, _len;
       result = [];
@@ -98,7 +88,6 @@
       }
       return result;
     };
-
     return LogicModel;
-
   })();
+}).call(this);

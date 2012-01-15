@@ -26,9 +26,16 @@
             float:left;
         }
 
+        .logic-item {
+            width:500px;
+        }
+
         .logic-item:hover {
             background-color:#eee;
             cursor: pointer;
+        }
+
+        .logic-smallclock {
         }
 
         .clear {
@@ -65,23 +72,28 @@
             <select data-bind="value: logic.selectedOrderBy, options: logic.orderByOptions"></select>
             <ul data-bind="foreach: logic.logicList">
                 <li class="logic-item" data-bind="click: $root.logic.onEditLogic">
-                    <span>Name: </span>
-                    <span data-bind="text: $data.name"></span><br />
-                    <span>Author: </span>
-                    <span data-bind="text: $data.author"></span><br />
-                    <span>Rating: </span>
-                    <span data-bind="text: $data.rating"></span><br />
-                    <span>Created at: </span>
-                    <span data-bind="text: $data.created_at"></span>
-                    <button data-bind="click: $root.logic.thumbsUp">
-                        <span>Thumbs up</span>
-                    </button>
-                    <button data-bind="click: $root.logic.thumbsDown">
-                        <span>Thumbs down</span>
-                    </button>                    
-                    <button data-bind="click: $root.logic.removeLogic">
-                        <span>Remove</span>
-                    </button>
+                    <div class="logic-metadata">
+                        <span>Name: </span>
+                        <span data-bind="text: $data.name"></span><br />
+                        <span>Author: </span>
+                        <span data-bind="text: $data.author"></span><br />
+                        <span>Rating: </span>
+                        <span data-bind="text: $data.rating"></span><br />
+                        <span>Created at: </span>
+                        <span data-bind="text: $data.created_at"></span>
+                        <button data-bind="click: $root.logic.thumbsUp">
+                            <span>Thumbs up</span>
+                        </button>
+                        <button data-bind="click: $root.logic.thumbsDown">
+                            <span>Thumbs down</span>
+                        </button>                    
+                        <button data-bind="click: $root.logic.removeLogic">
+                            <span>Remove</span>
+                        </button>
+                    </div>
+                    <div class="logic-smallclock">
+                        <canvas data-bind="small_retroid: $data.code" width="75" height="75"></canvas>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -90,11 +102,7 @@
     <script type="text/tmpl" id="retroid_ui_template">
         <canvas width="300" height="348"></canvas>
     </script>
-
-    <script type="text/tmpl" id="retroid_small_ui_template">
-        <canvas width="75" height="75"></canvas>
-    </script>
-
+ 
     <!-- JAVASCRIPTS -->    
     <script type="text/javascript" src="lib/underscore-min.js"></script>
     <script type="text/javascript" src="lib/knockout-2.0.0.js"></script>
@@ -103,12 +111,14 @@
     <script type="text/javascript" src="lib/ace/mode-javascript.js"></script>
     <script type="text/javascript" src="lib/ace/theme-solarized_dark.js"></script>
     <script type="text/javascript" src="lib/retroid_ui.js"></script>
+    <script type="text/javascript" src="lib/retroid_small_ui.js"></script>
 
     <script type="text/javascript" src="compiled/models/logic_runner.js"></script>
     <script type="text/javascript" src="compiled/models/logic.js"></script>
     <script type="text/javascript" src="compiled/viewmodels/logiclist_viewmodel.js"></script>
     <script type="text/javascript" src="compiled/viewmodels/editor_viewmodel.js"></script>
     <script type="text/javascript" src="compiled/viewmodels/retroid_viewmodel.js"></script>
+    <script type="text/javascript" src="compiled/viewmodels/small_retroid_viewmodel.js"></script>
     <script type="text/javascript" src="compiled/viewmodels/shell_viewmodel.js"></script>    
     <script type="text/javascript" src="compiled/views/ace_adapter.js"></script>
     <script type="text/javascript" src="compiled/views/retroid_adapter.js"></script>

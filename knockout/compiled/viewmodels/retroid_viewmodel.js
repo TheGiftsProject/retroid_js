@@ -1,21 +1,19 @@
-
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   window.RetroidViewModel = (function() {
-
     function RetroidViewModel(editorViewModel) {
-      var _this = this;
       this.editorViewModel = editorViewModel;
       this.logicRunner = new LogicRunnerModel(this);
       this.leds = ko.observableArray([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-      this.editorViewModel.aceText.subscribe(function(newValue) {
-        return _this.runEnabled(_this.logicRunner.codeIsValid(_this.editorViewModel.aceText()));
-      });
-      this.onRunLogic = function() {
-        _this.logicRunner.code = _this.editorViewModel.aceText();
-        return _this.logicRunner.run();
-      };
+      this.editorViewModel.aceText.subscribe(__bind(function(newValue) {
+        return this.runEnabled(this.logicRunner.codeIsValid(this.editorViewModel.aceText()));
+      }, this));
+      this.onRunLogic = __bind(function() {
+        this.logicRunner.code = this.editorViewModel.aceText();
+        return this.logicRunner.run();
+      }, this);
       this.runEnabled = ko.observable(true);
     }
-
     return RetroidViewModel;
-
   })();
+}).call(this);
