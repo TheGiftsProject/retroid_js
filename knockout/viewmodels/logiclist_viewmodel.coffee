@@ -6,6 +6,11 @@ class window.LogicListViewModel
 		@logicList = ko.observableArray([])
 		@selectedOrderBy = ko.observable()
 		@orderByOptions = ko.observableArray(['Date','Rating'])
+		@removeLogic = (item) =>			
+			debugger
+			item.destroy().done( =>
+				@logicList.destroy(item)
+			)
 
 		@loadLogicList()
 		
@@ -14,8 +19,7 @@ class window.LogicListViewModel
 		)
 
 	loadLogicList: ->		
-		window.LogicModel.all().done( (collection) =>
-			debugger
+		window.LogicModel.all().done( (collection) =>			
 			@logicList(collection)
 		)
 	
