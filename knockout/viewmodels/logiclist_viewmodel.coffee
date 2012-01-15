@@ -21,9 +21,10 @@ class window.LogicListViewModel
 				@logicList.destroy(item)
 			)
 		@thumbsUp = (item) =>
-			item.vote("up")
+			item.vote("up").done( => @orderByRating())
+
 		@thumbsDown = (item) =>
-			item.vote("down")	
+			item.vote("down").done( => @orderByRating())
 
 	loadLogicList: ->		
 		window.LogicModel.all().done( (collection) =>			

@@ -25,10 +25,14 @@
         });
       };
       this.thumbsUp = function(item) {
-        return item.vote("up");
+        return item.vote("up").done(function() {
+          return _this.orderByRating();
+        });
       };
       return this.thumbsDown = function(item) {
-        return item.vote("down");
+        return item.vote("down").done(function() {
+          return _this.orderByRating();
+        });
       };
     };
 
