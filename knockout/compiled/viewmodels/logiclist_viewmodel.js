@@ -10,16 +10,32 @@
       this.logicList = ko.observableArray([]);
       this.selectedOrderBy = ko.observable();
       this.orderByOptions = ko.observableArray(['Date', 'Rating']);
+      this._initLogicModelBindings();
       this.loadLogicList();
       this.selectedOrderBy.subscribe(function(newValue) {
         return _this.orderBy(newValue);
       });
     }
 
+    LogicListViewModel.prototype._initLogicModelBindings = function() {
+      var _this = this;
+      this.removeLogic = function(item) {
+        return item.destroy().done(function() {
+          return _this.logicList.destroy(item);
+        });
+      };
+      this.thumbsUp = function(item) {
+        return item.vote("up");
+      };
+      return this.thumbsDown = function(item) {
+        return item.vote("down");
+      };
+    };
+
     LogicListViewModel.prototype.loadLogicList = function() {
       var _this = this;
       return window.LogicModel.all().done(function(collection) {
-        debugger;        return _this.logicList(collection);
+        return _this.logicList(collection);
       });
     };
 
@@ -30,15 +46,15 @@
     LogicListViewModel.prototype.orderByDate = function() {
       var _this = this;
       return this.logicList.sort(function(left, right) {
-        if (left.created_at > right.created_at) return 1;
-        if (left.created_at < right.created_at) return 0;
+        if (left.created_at > right.created_at) return -1;
+        if (left.created_at < right.created_at) return 1;
       });
     };
 
     LogicListViewModel.prototype.orderByRating = function() {
       var _this = this;
       return this.logicList.sort(function(left, right) {
-        if (left.rating > right.rating) return 0;
+        if (left.rating > right.rating) return -1;
         if (left.rating < right.rating) return 1;
       });
     };

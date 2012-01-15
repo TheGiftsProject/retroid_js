@@ -15,7 +15,7 @@
       }
       deferred = $.Deferred();
       $.ajax({
-        url: "" + this.logics_url + "/create",
+        url: "" + this.LogicModel.logics_url + "/create",
         data: {
           "logic[author]": this.author,
           "logic[name]": this.name,
@@ -36,12 +36,12 @@
       var _this = this;
       deferred = $.Deferred();
       $.ajax({
-        url: "" + this.logics_url + "/" + this.id + "/destroy",
+        url: "" + LogicModel.logics_url + "/" + this.id + "/destroy",
         dataType: 'jsonp'
-      }).done(response(function() {
-        return deferred.resolve(response.object);
-      })).fail(function(xhr, status, error) {
-        return deferred.rejectWith(_this, [xhr, status, error]);
+      }).done(function(response) {
+        debugger;        return deferred.resolve(response.object);
+      }).fail(function(xhr, status, error) {
+        debugger;        return deferred.rejectWith(_this, [xhr, status, error]);
       });
       return deferred.promise();
     };
@@ -51,7 +51,7 @@
       var _this = this;
       deferred = $.Deferred();
       $.ajax({
-        url: "" + this.logics_url + "/" + this.id + "/vote",
+        url: "" + LogicModel.logics_url + "/" + this.id + "/vote",
         data: {
           vote: type
         },

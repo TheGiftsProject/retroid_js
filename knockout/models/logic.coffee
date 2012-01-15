@@ -7,7 +7,7 @@ class window.LogicModel
 			throw 'Cannot create a logic that already exists in the database'
 
 		deferred = $.Deferred()		
-		$.ajax({url: "#{@logics_url}/create", data: { "logic[author]": @author, "logic[name]": @name, "logic[code]": @code }, dataType: 'jsonp'})
+		$.ajax({url: "#{@LogicModel.logics_url}/create", data: { "logic[author]": @author, "logic[name]": @name, "logic[code]": @code }, dataType: 'jsonp'})
 			.done( (response) =>
 				@id = response.object.id
 				deferred.resolve(response.object)
@@ -20,11 +20,13 @@ class window.LogicModel
 
 	destroy: ->
 		deferred = $.Deferred()
-		$.ajax({url: "#{@logics_url}/#{@id}/destroy", dataType: 'jsonp'})
-			.done(response =>
+		$.ajax({url: "#{LogicModel.logics_url}/#{@id}/destroy", dataType: 'jsonp'})
+			.done( (response) =>
+				debugger
 				deferred.resolve(response.object)
 			)
 			.fail( (xhr,status,error) =>
+				debugger
 				deferred.rejectWith(@, [xhr,status,error])
 			)
 
@@ -32,7 +34,7 @@ class window.LogicModel
 
 	vote: (type)->
 		deferred = $.Deferred()
-		$.ajax({url: "#{@logics_url}/#{@id}/vote", data: { vote: type }, dataType: 'jsonp'})
+		$.ajax({url: "#{LogicModel.logics_url}/#{@id}/vote", data: { vote: type }, dataType: 'jsonp'})
 			.done( (response) => 
 				deferred.resolve(response.object)
 			)

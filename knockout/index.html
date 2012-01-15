@@ -73,6 +73,12 @@
                     <span data-bind="text: $data.rating"></span><br />
                     <span>Created at: </span>
                     <span data-bind="text: $data.created_at"></span>
+                    <button data-bind="click: $root.logic.thumbsUp">
+                        <span>Thumbs up</span>
+                    </button>
+                    <button data-bind="click: $root.logic.thumbsDown">
+                        <span>Thumbs down</span>
+                    </button>                    
                     <button data-bind="click: $root.logic.removeLogic">
                         <span>Remove</span>
                     </button>
