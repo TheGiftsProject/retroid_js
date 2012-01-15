@@ -1,4 +1,4 @@
-class window.LogicRunner
+class window.LogicRunnerModel
 	constructor: (@viewModel, @code = '')->
 
 	run: ->

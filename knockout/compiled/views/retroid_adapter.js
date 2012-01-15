@@ -1,14 +1,16 @@
-(function() {
-  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
   window.RetroidAdapter = (function() {
+
     function RetroidAdapter(element, retroidViewModel) {
+      var _this = this;
       this.element = element;
       this.retroidViewModel = retroidViewModel;
       this.retroidUI = new RetroidUI(this.element);
-      this.retroidViewModel.leds.subscribe(__bind(function(newValue) {
-        return this.retroidUI.renderFrame(newValue);
-      }, this));
+      this.retroidViewModel.leds.subscribe(function(newValue) {
+        return _this.retroidUI.renderFrame(newValue);
+      });
     }
+
     return RetroidAdapter;
+
   })();
-}).call(this);
