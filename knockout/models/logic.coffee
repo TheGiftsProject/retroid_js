@@ -8,7 +8,7 @@ class window.LogicModel
 			throw 'Cannot create a logic that already exists in the database'
 
 		deferred = $.Deferred()		
-		$.ajax({url: "#{@LogicModel.logics_url}/create", data: { "logic[author]": @author, "logic[name]": @name, "logic[code]": @code }, dataType: 'jsonp'})
+		$.ajax({url: "#{LogicModel.logics_url}/create", data: { "logic[author]": @author, "logic[name]": @name, "logic[code]": @code }, dataType: 'jsonp'})
 			.done( (response) =>
 				@id = response.object.id
 				deferred.resolve(response.object)

@@ -13,7 +13,7 @@
       }
       deferred = $.Deferred();
       $.ajax({
-        url: "" + this.LogicModel.logics_url + "/create",
+        url: "" + LogicModel.logics_url + "/create",
         data: {
           "logic[author]": this.author,
           "logic[name]": this.name,

@@ -2,6 +2,8 @@
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="http://cloud.github.com/downloads/SteveSanderson/knockout/jquery.tmpl.js"></script>
+    <script type="text/javascript" src="lib/knockout-2.0.0.js"></script>
+    <script type="text/javascript" src="lib/jquery.simplemodal.1.4.2.min.js"></script>    
     <style type="text/css">
         body {
         }
@@ -56,8 +58,11 @@
             <span>&nbsp;&nbsp;&nbsp;&nbsp;return leds;</span>
             <br/>
             <span>}</span>
+            <button class="submit" data-bind="create_logic: create_logic_dialog.closeDialog">
+                <span>Create New Logic</span>
+            </button>                                    
             <button class="submit" data-bind="click: retroid.onRunLogic, enable: retroid.runEnabled">
-            <span>Run code</span>
+                <span>Run code</span>
             </button>
         </div>
         <!-- Simple data-binding example -->
@@ -102,24 +107,37 @@
     <script type="text/tmpl" id="retroid_ui_template">
         <canvas width="300" height="348"></canvas>
     </script>
- 
-    <!-- JAVASCRIPTS -->    
-    <script type="text/javascript" src="lib/underscore-min.js"></script>
-    <script type="text/javascript" src="lib/knockout-2.0.0.js"></script>
-    <script type="text/javascript" src="https://raw.github.com/SteveSanderson/knockout.mapping/master/build/output/knockout.mapping-latest.debug.js"></script>
+
+    <script type="text/tmpl" id="create_logic_dialog_template">
+        <div class="create_logic_dialog_container">
+            <span>Author: </span>
+            <input data-bind="value: author" /><br/>
+            <span>Logic Name: </span>
+            <input data-bind="value: name" /><br />
+            <button data-bind="click: createLogic">
+                <span>Save logic</span>
+            </button>
+            <button class="simplemodal-close">
+                <span>Cancel</span>
+            </button>
+        </div>
+    </script>
+     
     <script type="text/javascript" src="lib/ace/ace.js"></script>
     <script type="text/javascript" src="lib/ace/mode-javascript.js"></script>
-    <script type="text/javascript" src="lib/ace/theme-solarized_dark.js"></script>
+    <script type="text/javascript" src="lib/ace/theme-solarized_dark.js"></script>    
     <script type="text/javascript" src="lib/retroid_ui.js"></script>
     <script type="text/javascript" src="lib/retroid_small_ui.js"></script>
 
     <script type="text/javascript" src="compiled/models/logic_runner.js"></script>
-    <script type="text/javascript" src="compiled/models/logic.js"></script>
+    <script type="text/javascript" src="compiled/models/logic.js"></script>    
     <script type="text/javascript" src="compiled/viewmodels/logiclist_viewmodel.js"></script>
     <script type="text/javascript" src="compiled/viewmodels/editor_viewmodel.js"></script>
     <script type="text/javascript" src="compiled/viewmodels/retroid_viewmodel.js"></script>
     <script type="text/javascript" src="compiled/viewmodels/small_retroid_viewmodel.js"></script>
-    <script type="text/javascript" src="compiled/viewmodels/shell_viewmodel.js"></script>    
+    <script type="text/javascript" src="compiled/viewmodels/create_logic_dialog_viewmodel.js"></script>
+    <script type="text/javascript" src="compiled/viewmodels/shell_viewmodel.js"></script>        
+
     <script type="text/javascript" src="compiled/views/ace_adapter.js"></script>
     <script type="text/javascript" src="compiled/views/retroid_adapter.js"></script>
     <script type="text/javascript" src="compiled/bootstrapper.js"></script>
