@@ -10,8 +10,11 @@ class window.LogicModel
 		deferred = $.Deferred()		
 		$.ajax({url: "#{LogicModel.logics_url}/create", data: { "logic[author]": @author, "logic[name]": @name, "logic[code]": @code }, dataType: 'jsonp'})
 			.done( (response) =>
-				@id = response.object.id
-				deferred.resolve(response.object)
+				if(response.ack == "success")
+					@id = response.object.id
+					deferred.resolve(response.object)
+				else
+					deferred.reject()
 			)
 			.fail( (xhr,status,error) =>
 				deferred.rejectWith(@, [xhr,status,error])
@@ -23,7 +26,10 @@ class window.LogicModel
 		deferred = $.Deferred()
 		$.ajax({url: "#{LogicModel.logics_url}/#{@id}/destroy", dataType: 'jsonp'})
 			.done( (response) =>
-				deferred.resolve(response.object)
+				if(response.ack == "success")
+					deferred.resolve(response.object)
+				else
+					deferred.reject()
 			)
 			.fail( (xhr,status,error) =>
 				deferred.rejectWith(@, [xhr,status,error])
@@ -35,8 +41,11 @@ class window.LogicModel
 		deferred = $.Deferred()
 		$.ajax({url: "#{LogicModel.logics_url}/#{@id}/vote", data: { vote: type }, dataType: 'jsonp'})
 			.done( (response) => 
-				@rating(response.object.rating)
-				deferred.resolve(response.object)
+				if(response.ack == "success")
+					@rating(response.object.rating)
+					deferred.resolve(response.object)
+				else
+					deferred.reject()
 			)
 			.fail( (xhr,status,error) =>
 				deferred.rejectWith(@, [xhr,status,error])
@@ -48,8 +57,11 @@ class window.LogicModel
 		deferred = $.Deferred()
 
 		$.ajax(@logics_url, { dataType: 'jsonp' })
-			.done( (response) => 				
-				deferred.resolve(@_buildLogicModels(response.objects))
+			.done( (response) =>
+				if(response.ack == "success")
+					deferred.resolve(@_buildLogicModels(response.objects))
+				else
+					deferred.reject()
 			)
 			.fail( (xhr,status,error) => 
 				deferred.rejectWith(@, [xhr,status,error])
