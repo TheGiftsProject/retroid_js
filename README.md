@@ -12,7 +12,7 @@ Current list of participating frameworks:
 * [Javascript MVC](http://javascriptmvc.com/ "Javascript MVC")
 * Vanilla - We've also added a vanilla flavor, which is a framework-less implementation of RetroidJS.
 
-The RetroidJS app is simulator of the awesome [Retroid!](http://www.youtube.com/watch?v=8sAvXCfEj3s "Retroid!") .
+The RetroidJS app is a simulator of the awesome [Retroid!](http://www.youtube.com/watch?v=8sAvXCfEj3s "Retroid!").
 In the simulator a participant can write a block of javascript code, that it's purpose is the manipulate the Retroid's
 LEDs. The user can submit his code for others to watch and vote on.
 
