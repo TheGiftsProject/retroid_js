@@ -1,3 +1,30 @@
+RetroidJS
+======================
+
+RetroidJS is an experiment in which we take several Javascript MVC frameworks to the test, in attempt to try
+and figure out which ones are the best to work with.
+
+Current list of participating frameworks:
+
+* Backbone
+* KnockoutJS
+* [EmberJS](http://emberjs.com/ "EmberJS!")
+* Javascript MVC
+* Vanilla - We've also added a vanilla flavor, which is a framework-less implementation of RetroidJS.
+
+The RetroidJS app is simulator of the awesome [Retroid!](http://www.youtube.com/watch?v=8sAvXCfEj3s "Retroid!").
+In the simulator a participant can write a block of javascript code, that it's purpose is the manipulate the Retroid's
+LEDs. The user can submit his code for others to watch and vote on it.
+
+The app has 3 main parts:
+
+* AceEditor.
+* The Retroid.
+* A list of all the participating logics.
+
+How to work with the Retroid server
+=====================================
+
 Add a directory per framework.
 Initial code in vanilla dir.
 
