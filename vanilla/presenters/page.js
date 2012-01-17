@@ -28,5 +28,4 @@ Page.prototype.saveLogic = function(author, name) {
     this.pendingLogic.save().done(_.bind(function(logic) {
         this.logicList.addLogic(logic);
     }, this));
-
 };
