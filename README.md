@@ -14,7 +14,7 @@ Current list of participating frameworks:
 
 The RetroidJS app is simulator of the awesome [Retroid!](http://www.youtube.com/watch?v=8sAvXCfEj3s "Retroid!") .
 In the simulator a participant can write a block of javascript code, that it's purpose is the manipulate the Retroid's
-LEDs. The user can submit his code for others to watch and vote on it.
+LEDs. The user can submit his code for others to watch and vote on.
 
 The app has 3 main parts:
 
