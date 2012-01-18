@@ -1,0 +1,58 @@
+body {
+}
+
+#script_input {
+    position: relative;
+    width: 800px;
+    height: 400px;
+}
+
+.page_container {
+    overflow: hidden;
+}
+
+.editor, .main_retroid {
+    float: left;
+}
+
+.logic_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    clear: both;
+}
+
+.logic_list .item {
+    float: left;
+    overflow: hidden;
+    padding: 10px;
+    margin: 5px;
+}
+
+.logic_list .item:hover {
+    background-color: #ddd;
+}
+
+.logic_list .item.active {
+    background-color: #aaa;
+}
+
+.logic_list .item canvas {
+    width: 75px;
+    height: 75px;
+}
+
+button {
+    float: right;
+}
+
+.logic_details_popup {
+    position: absolute;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 5px;
+}
+
+.logic_details_submit {
+    display: block;
+}

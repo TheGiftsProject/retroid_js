@@ -1,4 +1,4 @@
-class RetroidContext
+class window.RetroidContext
     constructor: (logic, callback) ->
         if (!callback)
             throw new Exception("must provide callback to retroid context")

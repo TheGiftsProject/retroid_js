@@ -1,4 +1,4 @@
-class EditorUI
+class window.EditorUI
     constructor: (container, callbacks) ->
         @callbacks = callbacks
         @container = container
@@ -12,24 +12,24 @@ class EditorUI
         @ace.setTheme('ace/theme/solarized_dark')
         @ace.setFontSize(14)
 
-        @bindEvents()
-
-    bindEvents: () ->
-        @submitButton.click(_.bind(@submit, @))
-        @saveButton.click(_.bind(@save, @))
-        @ace.getSession().on('change', _.bind(@textChanged, @))
-
-    submit: () ->
-        @callbacks.submit?(@ace.getSession().getValue())
-
-    save: () ->
-        @callbacks.save?(@ace.getSession().getValue())
-
-    textChanged: () ->
-        @callbacks.textChanged?(@ace.getSession().getValue())
+        @_bindEvents()
 
     setSaveState: (enabled) ->
         @saveButton.prop('disabled', !enabled)
 
     setText: (text) ->
         @ace.getSession().setValue(text)
+
+    _bindEvents: () ->
+        @submitButton.click(_.bind(@_submit, @))
+        @saveButton.click(_.bind(@_save, @))
+        @ace.getSession().on('change', _.bind(@_textChanged, @))
+
+    _submit: () ->
+        @callbacks.submit?(@ace.getSession().getValue())
+
+    _save: () ->
+        @callbacks.save?(@ace.getSession().getValue())
+
+    _textChanged: () ->
+        @callbacks.textChanged?(@ace.getSession().getValue())

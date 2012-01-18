@@ -1,4 +1,4 @@
-class Retroid
+class window.Retroid
     constructor: (container, small) ->
         @ui = (if small then new RetroidSmallUI(container) else new RetroidUI(container))
         @logicFunc = null
@@ -8,10 +8,10 @@ class Retroid
             @currentLogic.stop()
 
         @ui.reset()
-        @currentLogic = new RetroidContext(logic, _.bind(@stateChanged, this))
+        @currentLogic = new RetroidContext(logic, _.bind(@_stateChanged, @))
         @currentLogic.start()
 
-    stateChanged: (state) ->
+    _stateChanged: (state) ->
         if (!$.isArray(state))
             state = []
         state.length = 12

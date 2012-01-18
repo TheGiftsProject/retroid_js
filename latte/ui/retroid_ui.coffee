@@ -1,4 +1,4 @@
-class RetroidUI
+class window.RetroidUI
     constructor: (container) ->
         RetroidUI.loadImages()
 

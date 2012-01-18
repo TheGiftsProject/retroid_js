@@ -1,32 +1,32 @@
-class LogicList
-    constructor: (container, callbacks) ->
+class window.LogicList
+    constructor: (container, sortOrder, callbacks) ->
         @callbacks = callbacks
-        @ui = new LogicListUI(container,
-            logicSelected: _.bind(@logicSelected, this)
-        )
-        @logicList = []
-        @retroidList = []
+        @ui = new LogicListUI(container)
+        @sortOrder = sortOrder
+        @items = []
 
-        @loadLogicList()
-
-    loadLogicList: () ->
-        Logic.all().done( (items) =>
-            @logicList = items;
-            _.each(@logicList, (item, idx) =>
-                container = @ui.createItemContainer(idx)
-                retroid = new Retroid(container, true)
-                retroid.setLogic(item)
-                @retroidList.push(retroid)
-            )
-        )
-
-    logicSelected: (idx, el) ->
-        @callbacks.logicSelected?(@logicList[idx])
-        @ui.markActive(el)
-
-    logicChanged: () ->
-        @ui.markAllInactive()
+        @_loadLogicList()
 
     addLogic: (logic) ->
-        @logicList.push(logic)
+        @_loadLogicList()
 
+    _loadLogicList: () ->
+        Logic.all().done( (items) =>
+            items = Logic.sortBy(items, @sortOrder)
+            @_renderLogicList(items)
+        )
+
+    _renderLogicList: (items) ->
+        @items = []
+        @ui.reset();
+        _.each(items, (item, idx) =>
+            container = @ui.createItemContainer()
+            item = new LogicListItem(container, item,
+                selected: _.bind(@_logicSelected, @)
+            )
+            @items.push(item)
+        )
+
+
+    _logicSelected: (logic) ->
+        @callbacks.logicSelected?(logic)

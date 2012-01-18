@@ -1,13 +1,13 @@
-class Logic
+class window.Logic
     constructor: (attrs) ->
         @updateAttributes(attrs)
-        @logicFunc = new Function(Logic.processFunctionText(@code))
-
-    @processFunctionText: (text) ->
-        "var leds = arguments[0];" + text + "; return leds;"
+        @logicFunc = new Function(Logic._processFunctionText(@code))
 
     func: () ->
         _.bind(@logicFunc, {}) # create a new context for the function to run in -- so we don't pollute the window object
+
+    @_processFunctionText: (text) ->
+        "var leds = arguments[0];" + text + "; return leds;"
 
 ############## ANYTHING BELOW THIS IS SHITTY SERVER COMMUNICATION CODE ##############
 
@@ -29,7 +29,7 @@ class Logic
 
         $.ajax("http://sharp-wind-7656.herokuapp.com/logics/" + @id + "/vote", { data: { vote: type }, dataType: 'jsonp' }).done( (data) =>
             if (data.ack == "success")
-                @rating = data.rating
+                @rating = data.object.rating
                 deferred.resolve(@)
             else
                 deferred.reject()
@@ -62,7 +62,7 @@ class Logic
             if (data.ack == "success")
                 logics = []
                 _(data.objects).each( (item) ->
-                    logics.push(Logic.createFromServerData(item))
+                    logics.push(Logic._createFromServerData(item))
                 )
                 deferred.resolve(logics)
             else
@@ -73,10 +73,10 @@ class Logic
 
         deferred.promise()
 
-    @createFromServerData: (data) ->
-        new Logic(data)
-
     @sortBy: (logics, attributeName) ->
         _(logics).sortBy( (item) ->
             item[attributeName]
-        )
+        ).reverse()
+
+    @_createFromServerData: (data) ->
+        new Logic(data)

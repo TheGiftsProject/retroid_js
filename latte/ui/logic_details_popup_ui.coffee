@@ -1,4 +1,4 @@
-class LogicDetailsPopupUI
+class window.LogicDetailsPopupUI
     constructor: (callbacks) ->
         @callbacks = callbacks
         @container = $.tmpl($("#logic_details_popup_template").html())
@@ -9,18 +9,11 @@ class LogicDetailsPopupUI
         @submitButton = @container.find(".logic_details_submit")
         @cancelButton = @container.find(".logic_details_cancel")
 
-    bindEvents: () ->
-        @submitButton.click(_.bind(@submit, @))
-        @cancelButton.click(_.bind(@cancel, @))
-
-    unbindEvents: () ->
-        @submitButton.unbind('click')
-        @cancelButton.unbind('click')
-
     show: () ->
+        @_bindEvents()
         @container.show()
-        posLeft = ($(document).width() - @container.width()) / 2
-        posTop = ($(document).height() - @container.height()) / 2
+        posLeft = $(window).width() / 2
+        posTop = $(window).height() / 2
         @container.css(
             'top': posTop
             'left': posLeft
@@ -28,13 +21,22 @@ class LogicDetailsPopupUI
 
     hide: () ->
         @container.hide()
+        @_unbindEvents()
 
     reset: () ->
         @authorInput.val("")
         @nameInput.val("")
 
-    submit: () ->
+    _bindEvents: () ->
+        @submitButton.click(_.bind(@_submit, @))
+        @cancelButton.click(_.bind(@_cancel, @))
+
+    _unbindEvents: () ->
+        @submitButton.unbind('click')
+        @cancelButton.unbind('click')
+
+    _submit: () ->
         @callbacks.submit?(@authorInput.val(), @nameInput.val())
 
-    cancel: () ->
+    _cancel: () ->
         @callbacks.cancel?()

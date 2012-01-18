@@ -1,9 +1,10 @@
-class PageUI
+class window.PageUI
     constructor: (container) ->
         @container = container
         @editorContainer = @container.find(".editor")
         @mainRetroidContainer = @container.find(".main_retroid")
-        @logicListContainer = @container.find(".logic_list")
+        @ratingLogicListContainer = @container.find(".rating_logic_list")
+        @dateLogicListContainer = @container.find(".date_logic_list")
 
     getEditorContainer: () ->
         @editorContainer
@@ -11,5 +12,8 @@ class PageUI
     getMainRetroidContainer: () ->
         @mainRetroidContainer
 
-    getLogicListContainer: () ->
-        @logicListContainer
+    getRatingLogicListContainer: () ->
+        @ratingLogicListContainer
+
+    getDateLogicListContainer: () ->
+        @dateLogicListContainer

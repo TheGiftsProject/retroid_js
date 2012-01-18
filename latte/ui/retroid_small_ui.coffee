@@ -1,4 +1,4 @@
-class RetroidSmallUI
+class window.RetroidSmallUI
     constructor: (container) ->
         @canvas = $.tmpl($("#retroid_small_ui_template").html())
         @canvas.appendTo(container)

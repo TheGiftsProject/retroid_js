@@ -1,22 +1,20 @@
-class LogicDetailsPopup
+class window.LogicDetailsPopup
     constructor: (callbacks) ->
         @callbacks = callbacks
         @ui = new LogicDetailsPopupUI(
-            submit: _.bind(@submit, this)
-            cancel: _.bind(@cancel, this)
+            submit: _.bind(@_submit, this)
+            cancel: _.bind(@_cancel, this)
         )
 
     open: () ->
         @ui.reset()
-        @ui.bindEvents() # move to show
         @ui.show()
 
     close: () ->
         @ui.hide()
-        @ui.unbindEvents() # move to hide
 
-    submit: (author, name) ->
+    _submit: (author, name) ->
         @callbacks.submit?(author, name)
 
-    cancel: () ->
+    _cancel: () ->
         @close()

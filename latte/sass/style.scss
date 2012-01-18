@@ -1,0 +1,165 @@
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.page_container {
+    overflow: hidden;
+    width: 1200px;
+    margin: 0 auto;
+
+    .top {
+        float: left;
+        overflow: hidden;
+
+        .main_retroid {
+            float: left;
+            border: 2px solid #aaa;
+            border-left: none;
+            border-radius: 0 10px 10px 0;
+            margin-top: 27px;
+            padding: 10px;
+        }
+
+        .editor {
+            float: left;
+            background-color: #e8e8e8;
+            border: 2px solid #aaa;
+            padding: 5px;
+            border-radius: 10px;
+
+            #script_input {
+                position: relative;
+                width: 800px;
+                height: 386px;
+            }
+
+            button {
+                float: right;
+            }
+        }
+    }
+
+    .logic_lists {
+        background-color: #aaa;
+        border: 2px solid #aaa;
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        margin: 0 10px;
+        width: 790px;
+        float: left;
+        clear: both;
+
+        .logic_list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 350px;
+            float: left;
+            margin: 22px;
+            background-color: #e8e8e8;
+
+            .item {
+                overflow: hidden;
+                width: 330px;
+                padding: 5px;
+                border-bottom: 2px solid #aaa;
+                cursor: pointer;
+
+                &:last-child {
+                    border: none;
+                    border-radius: 0 0 0 10px;
+                }
+
+                &:hover {
+                    background-color: #ddd;
+                }
+
+                &.active {
+                    background-color: #aaa;
+                }
+
+                .clock {
+                    background: white;
+                    border: 1px solid #aaa;
+                    float: left;
+                    width: 75px;
+                    border-radius: 40px;
+                    margin-right: 5px;
+
+                    canvas {
+                        width: 75px;
+                        height: 75px;
+                    }
+                }
+
+                .details {
+                    float: left;
+                    width: 220px;
+
+                    .name {
+                        font-size: 26px;
+                        font-weight: bold;
+                        color: #8af;
+                    }
+
+                    .author {
+                        font-size: 14px;
+                    }
+                }
+
+                .rating_container {
+                    cursor: default;
+                    float: right;
+                    width: 20px;
+                    text-align: center;
+                    background-color: #ddd;
+                    border: 2px solid #ccc;
+                    border-radius: 10px;
+
+                    a {
+                        display: block;
+                        vertical-align: middle;
+                        text-decoration: none;
+
+                        &:first-child {
+                            border-bottom: 1px solid #ccc;
+                            border-radius: 10px 10px 0 0;
+                        }
+
+                        &:last-child {
+                            border-top: 1px solid #ccc;
+                            border-radius: 0 0 10px 10px;
+                        }
+
+                        &:hover {
+                            background-color: #bbb;
+                        }
+                    }
+
+                    span {
+                        display: block;
+                        vertical-align: middle;
+                    }
+
+                    a, span {
+                        padding: 2px 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.logic_details_popup {
+    position: fixed;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 5px;
+
+    .logic_details_submit {
+        display: block;
+    }
+}

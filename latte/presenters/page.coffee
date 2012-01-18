@@ -1,41 +1,45 @@
-class Page
+class window.Page
     constructor: (container) ->
         @ui = new PageUI(container)
 
         @editor = new Editor(@ui.getEditorContainer(),
-            runLogic: _.bind(@runLogic, this)
-            saveLogic: _.bind(@showLogicDetailsPopup, this)
+            runLogic: _.bind(@_runLogic, @)
+            saveLogic: _.bind(@_showLogicDetailsPopup, @)
         )
 
         @mainRetroid = new Retroid(@ui.getMainRetroidContainer())
 
-        @logicList = new LogicList(@ui.getLogicListContainer(),
-            logicSelected: _.bind(@changeLogic, this)
+        @ratingLogicList = new LogicList(@ui.getRatingLogicListContainer(), 'rating'
+            logicSelected: _.bind(@_changeLogic, @)
+        )
+
+        @dateLogicList = new LogicList(@ui.getDateLogicListContainer(), 'createdAt'
+            logicSelected: _.bind(@_changeLogic, @)
         )
 
         @logicDetailsPopup = new LogicDetailsPopup(
-            submit: _.bind(@saveLogic, this)
+            submit: _.bind(@_saveLogic, @)
         )
 
-    runLogic: (logic) ->
+    _runLogic: (logic) ->
         @mainRetroid.setLogic(logic)
-        @logicList.logicChanged()
 
-    changeLogic: (logic) ->
+    _changeLogic: (logic) ->
         @editor.setLogic(logic)
         @mainRetroid.setLogic(logic)
 
-    showLogicDetailsPopup: (logic) ->
+    _showLogicDetailsPopup: (logic) ->
         @pendingLogic = logic
         @logicDetailsPopup.open()
 
-    saveLogic: (author, name) ->
+    _saveLogic: (author, name) ->
         @logicDetailsPopup.close()
         @pendingLogic.updateAttributes(
             author: author
             name: name
         )
         @pendingLogic.save().done( (logic) =>
-            @logicList.addLogic(logic)
+            @dateLogicList.addLogic(logic)
+            @ratingLogicList.addLogic(logic)
         )
 

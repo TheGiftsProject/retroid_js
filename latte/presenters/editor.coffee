@@ -1,25 +1,25 @@
-class Editor
+class window.Editor
     constructor: (container, callbacks) ->
         @callbacks = callbacks
         @ui = new EditorUI(container,
-            submit: _.bind(@newLogic, @)
-            save: _.bind(@saveLogic, @)
-            textChanged: _.bind(@textChanged, @)
+            submit: _.bind(@_newLogic, @)
+            save: _.bind(@_saveLogic, @)
+            textChanged: _.bind(@_textChanged, @)
         )
 
         @ui.setSaveState(false)
 
-    newLogic: (code) ->
+    setLogic: (logic) ->
+        @ui.setText(logic.code)
+
+    _newLogic: (code) ->
         logic = new Logic({ code: code })
         @callbacks.runLogic?(logic)
         @ui.setSaveState(true)
 
-    saveLogic: (code) ->
+    _saveLogic: (code) ->
         logic = new Logic({ code: code })
         @callbacks.saveLogic?(logic)
 
-    textChanged: (text) ->
+    _textChanged: (text) ->
         @ui.setSaveState(false)
-
-    setLogic: (logic) ->
-        @ui.setText(logic.code)
